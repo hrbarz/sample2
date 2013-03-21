@@ -1,0 +1,27 @@
+
+
+<html>
+<head>
+	<title>test</title>
+</head>
+<body>
+      <script src="js/libs/jquery/jquery-min.js"></script>
+      <script src="js/libs/socket.io/socket.io.js"></script>
+
+<script>
+  $(document).on('ready',function(){
+
+  		tasklist_io = io.connect('http://localhost:3000/private');
+
+  		tasklist_io.on('connect',function(){
+
+  		});
+
+  		/*tasklist_io.on('list',function (data){
+  			console.log(data);
+  		});*/
+  });
+</script>
+
+</body>
+</html>

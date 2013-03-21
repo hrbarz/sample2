@@ -1,0 +1,9 @@
+{
+    "name": "node-task",
+    "version": "0.0.1",
+    "dependencies": {
+        "restify": "2.3.4",
+        "socket.io": "0.9.13",
+        "mongoose":"3.6.0"
+    }
+}

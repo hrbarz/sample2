@@ -2,8 +2,10 @@
 define([
   'jquery',
   'underscore',
-  'backbone'
-], function($, _, Backbone) {
+  'backbone',
+  'views/tasklist_page'
+
+], function($, _, Backbone,tasklist_page) {
 
 
   
@@ -23,25 +25,25 @@ define([
     
     app_router.on('route:showHome', function(){
    
-      alert('datos home');
 
     });
 
     app_router.on('route:defaultAction', function (actions) {
 
-      console.log(actions);
-   
-      alert('a todo');
+      tasklist_page.initialize();
+
+
+      //alert('a todo'+ decodeURIComponent(actions));
        //var taskListView = new TaskListView();
        //taskListView.render();
 
     });
 
-    Backbone.history.start({pushState: true, root: "/github/sample2/public/"});
+    Backbone.history.start({pushState: true, root: "/"});
 
 
 
-    if (Backbone.history && Backbone.history._hasPushState) {
+    /*if (Backbone.history && Backbone.history._hasPushState) {
    
       // Use delegation to avoid initial DOM selection and allow all matching elements to bubble
       $(document).delegate("a", "click", function(evt) {
@@ -62,7 +64,7 @@ define([
           }
         });
      
-    }
+    }*/
 
 
 
