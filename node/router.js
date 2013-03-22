@@ -7,11 +7,14 @@ module.exports = function(server){
         //res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
         var tasklist = new Tasklist({
-                            name: req.params.name, 
-                            description: req.params.description
-                        });  
-        tasklist.save();  
+                            name        : req.params.name, 
+                            description : req.params.description
+                        });
+
+            tasklist.save();  
+
         res.end();  
+
     };  
 
     list = function(req, res){  
