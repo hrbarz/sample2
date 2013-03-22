@@ -12,7 +12,7 @@ var server = restify.createServer();
 var mongoose = require('mongoose');
 	mongoose.connect(config.creds.mongoose_auth)
 
-var	routes = require('./router')(server);  
+var	routes = require('./routes')(server);  
 
 
 
