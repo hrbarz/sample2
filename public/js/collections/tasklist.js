@@ -1,4 +1,22 @@
 define([
+  'jquery',
+  'underscore',
+  'backbone',
+  'models/tasklist'
+], function($, _, Backbone, TasklistModel){
+    
+    var Tasklist = Backbone.Collection.extend({
+        
+        model: TasklistModel,
+        
+        url: 'http://sample2.dev:3000/tasklist'
+  });
+
+  return Tasklist;
+});
+
+/*
+define([
         'io'
     ],
 
@@ -16,16 +34,6 @@ define([
 
             
 
-
-            
-
-            /*$.getJSON('/data_tasklist.php', function(data) {
-
-                if(data == '' || data.length == 0) data = undefined;
-
-                fn_action(data);
-
-            });*/
 
         },
 
@@ -46,4 +54,4 @@ define([
     }
 
 
-});
+});*/

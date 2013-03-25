@@ -7,16 +7,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- Le styles -->
     <link href="tools/bootstrap/css/bootstrap.css" rel="stylesheet">
     
     <link href="css/docs.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
     <link href="tools/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-
-
-
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="assets/js/html5shiv.js"></script>
@@ -129,72 +125,7 @@
 
         <ul class="thumbnails" id="list-tasklist">
 
-        <script id="speakers-template" type="text/template">  
-            {{#each tasklist}}
-            <li class="span3" id="item-tasklist-{{this.id}}">
-              
-              <div style="padding:0 0 5px 0;"><strong>{{this.name}}</strong>
-                <div class="btn-group" style="float:right">
-                  <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a href="#" class="btn-edit-tasklist" data-value="{{this.id}}">Edit</a></li>
-                    <li><a href="#" class="btn-delete-tasklist" data-value="{{this.id}}">Delete</a></li>
-                  </ul>
-                </div>
-              </div>
-
-              <div style="overflow:auto; height:300px; border: 1px solid #ddd; padding: 5px;">
-
-                <button class="btn-new-task btn btn-small btn-block" data-value="{{this.id}}" style="margin-bottom:5px" type="button">new</button>
-
-                <div class="accordion" id="accordion{{this.id}}">
-                  
-                  
-                  {{#each tasks}}
-
-                  <div class="accordion-group" id="item-task-{{this.id}}"  >
-                    
-                    <div class="accordion-heading">
-                      <div class="check-line">
-                        
-                        <input type="checkbox" data-value="{{this.id}}"  class="check-task inline" >    
-                      
-                         <a data-toggle="collapse" id="title-task-{{this.id}}" data-parent="#accordion{{../this.id}}" href="#collapse{{this.id}}">{{this.name}}</a>
-
-                      </div>                                       
-                    </div>
-                    
-                    <div id="collapse{{this.id}}" class="accordion-body collapse collapse">
-                      <div class="accordion-inner">
-                        
-                        <p id="description-task-{{this.id}}" >{{this.description}}</p>
-                        
-                       <div class="buttons-action-task text-right">
-                          <button type="button" data-value="{{this.id}}" class="btn-delete-task btn btn-danger btn-mini">Delete</button>
-                          <button type="button" class="btn btn-mini btn-edit-task" data-value="{{this.id}}">Edit</button>
-                        </div>
-
-                        <hr>
-                        <small style="display:block">update: </small>
-                        <small>create:</small>
-                      </div>
-                    </div>
-
-                  </div>
-                  {{/each}}
-
-                  {{this.description}}
-
-                </div>
-              </div>
-            </li>
-             {{/each}}
-          
-          </script>
-
-
+        
           </ul>
 
         </section>
@@ -217,10 +148,9 @@
         </ul>
       </div>
     </footer>
-
-
     <script data-main="js/main" src="js/libs/require/require.js"></script>
 
     <div class="modal-backdrop in hide"></div>
+
   </body>
 </html>

@@ -3,15 +3,16 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'views/tasklist_page'
+  'views/tasklistView'
 
-], function($, _, Backbone,tasklist_page) {
+], function($, _, Backbone,TasklistView) {
 
 
   
   var AppRouter = Backbone.Router.extend({
     routes: {
       // Define some URL routes
+      
       'home': 'showHome',
       
       // Default
@@ -30,12 +31,15 @@ define([
 
     app_router.on('route:defaultAction', function (actions) {
 
-      tasklist_page.initialize();
+      //TasklistView.render();
+
+      var projectsView = new TasklistView();
+        projectsView.render();
 
 
       //alert('a todo'+ decodeURIComponent(actions));
-       //var taskListView = new TaskListView();
-       //taskListView.render();
+      //var taskListView = new TaskListView();
+      //taskListView.render();
 
     });
 

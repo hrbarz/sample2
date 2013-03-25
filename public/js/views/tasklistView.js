@@ -1,11 +1,38 @@
 define([
-  'template',
+  'jquery',
+  'underscore',
+  'backbone',
   'collections/tasklist',
-  'views/task_page',
-  'views/modal'
+  'text!templates/tasklist.html'
+  ], function($,_,Backbone,TasklistCollection,tasklistTemplate) {
 
-  ], function(template,tasklist,task_page,modal_form) {
+      var Tasklist = Backbone.View.extend({
 
+            el: '#list-tasklist',
+
+            render: function () {
+
+              var that = this;
+              var tasklist = new TasklistCollection();
+
+              tasklist.fetch({
+
+                success: function(tasklist,data) {
+
+                  $(that.el).html(_.template(tasklistTemplate, {list: data, _:_}));
+                
+                }
+
+              });
+
+            }
+
+       });
+
+
+       return Tasklist;
+
+/*
   return {
 
       get_id : function(e){
@@ -134,7 +161,7 @@ define([
           that = this;
 
 
-          /*Bind action in tasklist*/
+          //Bind action in tasklist
 
           $('#btn-new-tasklist').on('click',function(){
 
@@ -155,7 +182,7 @@ define([
           });
 
 
-          /*Bind action in task*/
+          //Bind action in task
 
           $('.btn-new-task').on('click',function(){
 
@@ -183,5 +210,10 @@ define([
 
       }
 
- }
+ }*/
+
+
+
+
+
 });

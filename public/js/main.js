@@ -6,9 +6,14 @@ require.config({
     jquery      : 'libs/jquery/jquery-min',
     underscore  : 'libs/underscore/underscore-min',
     backbone    : 'libs/backbone/backbone-min',
-    handlebars  : 'libs/handlebars/handlebars',
     io          : 'libs/socket-io/socket-io-min',
-    templates   : '../templates/'
+    
+    templates   : '../templates/',
+  
+    // Require.js plugins
+    text        : 'libs/require/text',
+    //order       : 'libs/require/order'
+
   },
 
   urlArgs : "bust="+new Date().getTime()

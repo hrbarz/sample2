@@ -2,8 +2,13 @@ define([
   'underscore',
   'backbone'
 ], function(_, Backbone) {
-  var Message = Backbone.Model.extend({
-      url: 'http://localhost:8080/messages'
-  });
-  return Message;
+
+		var Tasklist = Backbone.Model.extend({
+        
+        	url: 'http://sample2.dev:3000/tasklist'
+  		
+  		});
+	
+	return Tasklist;
+
 });

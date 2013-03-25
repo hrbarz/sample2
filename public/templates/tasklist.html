@@ -1,0 +1,63 @@
+<% _.each( list, function( tasklist ){ %>
+
+            <li class="span3" id="item-tasklist-<%- tasklist._id %>">
+              
+              <div style="padding:0 0 5px 0;"><strong><%- tasklist.name %></strong>
+                <div class="btn-group" style="float:right">
+                  <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a href="#" class="btn-edit-tasklist" data-value="<%- tasklist._id %>">Edit</a></li>
+                    <li><a href="#" class="btn-delete-tasklist" data-value="<%- tasklist._id %>">Delete</a></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div style="overflow:auto; height:300px; border: 1px solid #ddd; padding: 5px;">
+
+                <button class="btn-new-task btn btn-small btn-block" data-value="<%- tasklist._id %>" style="margin-bottom:5px" type="button">new</button>
+
+                <div class="accordion" id="accordion<%- tasklist._id %>">
+                  
+                  <% if(_.isUndefined(tasklist.tasks) == false) { %>
+
+                  <% _.each( tasklist.tasks, function( task ){ %>
+
+                  <div class="accordion-group" id="item-task-<%- task._id %>"  >
+                    
+                    <div class="accordion-heading">
+                      <div class="check-line">
+                        
+                        <input type="checkbox" data-value="<%- task.id %>"  class="check-task inline" >    
+                      
+                         <a data-toggle="collapse" id="title-task-<%- task.id %>" data-parent="#accordion<%- tasklist._id %>" href="#collapse<%- task.id %>"><%- task.name %></a>
+
+                      </div>                                       
+                    </div>
+                    
+                    <div id="collapse<%- task._id %>" class="accordion-body collapse collapse">
+                      <div class="accordion-inner">
+                        
+                        <p id="description-task-<%- task._id %>" ><%- task.description %></p>
+                        
+                       <div class="buttons-action-task text-right">
+                          <button type="button" data-value="<%- task._id %>" class="btn-delete-task btn btn-danger btn-mini">Delete</button>
+                          <button type="button" class="btn btn-mini btn-edit-task" data-value="<%- task._id %>">Edit</button>
+                        </div>
+
+                        <hr>
+                        <small style="display:block">update: </small>
+                        <small>create:</small>
+                      </div>
+                    </div>
+
+                  </div>
+                  <% }) } %>
+
+                  <%- tasklist.description  %>
+
+                </div>
+              </div>
+            </li>
+<% }) %>

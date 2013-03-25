@@ -1,6 +1,6 @@
 var mongoose = require('mongoose'),  
    
-var Schema = mongoose.Schema;  
+	Schema = mongoose.Schema;  
   
 var tasklistSchema = new Schema({  
 						    name: String,  

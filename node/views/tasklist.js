@@ -3,8 +3,8 @@ var Tasklist = require('../models/tasklist');
 module.exports = {  
       
     tasklist: function(req, res){
-       //res.header("Access-Control-Allow-Origin", "*");
-       //res.header("Access-Control-Allow-Headers", "X-Requested-With");
+        res.header("Access-Control-Allow-Origin", "http://sample2.dev"); 
+        res.header("Access-Control-Allow-Headers", "X-Requested-With");
         var tasklist = new Tasklist({
                             name: req.params.name, 
                             description: req.params.description
@@ -16,6 +16,8 @@ module.exports = {
     },  
 
     list: function(req, res){  
+        res.header("Access-Control-Allow-Origin", "http://sample2.dev"); 
+        res.header("Access-Control-Allow-Headers", "X-Requested-With");
         
         Tasklist.find(function(err, result) {  
             res.send(result);  
@@ -24,7 +26,9 @@ module.exports = {
     },
 
     find: function(req, res) {  
-        
+        res.header("Access-Control-Allow-Origin", "http://sample2.dev"); 
+        res.header("Access-Control-Allow-Headers", "X-Requested-With");
+       
         Tasklist.findOne({_id: req.params.id}, function(error, result) {  
             res.send(result);  
         });
