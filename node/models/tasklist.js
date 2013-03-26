@@ -1,12 +1,19 @@
-var mongoose = require('mongoose'),  
-   
-	Schema = mongoose.Schema;  
-  
-var tasklistSchema = new Schema({  
+module.exports = function(mongoose){ 
+
+	var tasklistSchema = new mongoose.Schema({  
 						    name: String,  
 						    description: String ,
 						    created_at: { type: Date, default: Date.now },
 						    updated_at: { type: Date, default: Date.now }
-						});  
-  
-module.exports = mongoose.model('Tasklist', tasklistSchema);  
+						});
+
+	try {
+		
+		return mongoose.model('Tasklist'); 
+	
+	} catch (e) {
+	
+		return mongoose.model('Tasklist', tasklistSchema); 
+	}
+
+}

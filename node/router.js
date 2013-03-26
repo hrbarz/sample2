@@ -3,18 +3,17 @@ module.exports = function(server){
 
 	//Definiendo rutas para "tasklist"
 
-			console.log('contenetado a rutas');
-
+	tasklist = require('./views/tasklist');
 
     server.get(
-    	'/tasklist', require('./routes/tasklist/list') );  
+    	'/tasklist', tasklist.list);  
 
-    /*server.get(
+    server.get(
     	'/tasklist/:id', tasklist.find);
 
 	server.post(		
 		'/tasklist', tasklist.save);
-	*/
+
 	// Otros
 
 	//test upload

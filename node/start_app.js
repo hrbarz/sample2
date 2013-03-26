@@ -6,7 +6,6 @@ module.exports = function(){
 	/*Modules*/
 	var restify 	= require('restify');  
 
-	var mongoose = require('mongoose').connect(config.creds.mongoose_auth,{ server: { poolSize: 1 }});
 	/*Creating Server*/
 	var server = restify.createServer();
 		
