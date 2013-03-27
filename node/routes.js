@@ -3,12 +3,11 @@ module.exports = function(server){
 
 	//Definiendo rutas para "tasklist"
 
-			console.log('contenetado a rutas');
-
-
     server.get(
-    	'/tasklist', require('./routes/tasklist/list') );  
+    	'/tasklist', 
+    		require('./routes/tasklist/list') );  
 
+    	
     /*server.get(
     	'/tasklist/:id', tasklist.find);
 

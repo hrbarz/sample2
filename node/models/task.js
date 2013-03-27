@@ -9,11 +9,11 @@ module.exports = function(mongoose){
 
 	try {
 		
-		return mongoose.model('Tasklist'); 
+		return mongoose.model('Task'); 
 	
 	} catch (e) {
 	
-		return mongoose.model('Tasklist', Schema); 
+		return mongoose.model('Task', Schema); 
 	}
 
 }

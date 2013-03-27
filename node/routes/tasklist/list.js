@@ -1,12 +1,7 @@
 module.exports = function(req,res){
 
-		var config 		= require('../../config');
-
-		res.header("Access-Control-Allow-Origin", "http://sample2.dev"); 
+		res.header("Access-Control-Allow-Origin", config.AccessControlAllowOrigin); 
 		res.header("Access-Control-Allow-Headers", "X-Requested-With");
-
-		console.log('contenetado a tasklist');
-
 
         //db.connect();
 
@@ -14,14 +9,24 @@ module.exports = function(req,res){
 
 		db.connect(config.creds.mongoose_auth,{ server: { poolSize: 1 }});
 
-      	var Tasklist  = require('../../models/tasklist')(db);	
+      	var Tasklist  = require('../../models/tasklist')(db);
+
+      	var Task  = require('../../models/task')(db);
 
 
-        Tasklist.find(function(err, result) {  
 
-           db.connection.close();
-           res.send(result);
-        
+        Tasklist.find(function(err, records) {
+
+
+        	records.forEach(function(result){
+        		
+        		
+        	});
+
+
+        	res.send(result);
+        	db.connection.close();
+
         });  
 		
 }

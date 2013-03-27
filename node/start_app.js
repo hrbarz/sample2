@@ -2,6 +2,9 @@ module.exports = function(){
 
 	/*Load Config*/
 	var config 		= require('./config');
+	
+		global.config = config;
+
 
 	/*Modules*/
 	var restify 	= require('restify');  
