@@ -1,8 +1,11 @@
 module.exports = function(mongoose){ 
 
-	var Schema = new mongoose.Schema({  
+	var Schema = mongoose.Schema;
+
+	var tasklistSchema  = new Schema({  
 						    name: String,  
 						    description: String ,
+						    tasks: [{ type: Schema.Types.ObjectId, ref: 'task' }],
 						    created_at: { type: Date, default: Date.now },
 						    updated_at: { type: Date, default: Date.now }
 						});
@@ -13,7 +16,7 @@ module.exports = function(mongoose){
 	
 	} catch (e) {
 	
-		return mongoose.model('Tasklist', Schema); 
+		return mongoose.model('Tasklist', tasklistSchema); 
 	}
 
 }
