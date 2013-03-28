@@ -22,18 +22,18 @@ module.exports = function(req,res){
 
               
                   task.save(function (err) {
+
+                    Tasklist.findOne({ _id: req.params.tasklist}, function(err, tasklist){
+                      if (err) { return next(err); }
+                      
+                      tasklist.tasks.push(task._id);
+                      tasklist.save(function(err) {
+                        if (err) { return next(err); }
+                      
+                         res.end();
+                      });
+                    });
                     
-                     var tasklist = new Tasklist({ _id: req.params.tasklist});
-                         tasklist.tasks.push(task._id);
-
-                         console.log(tasklist);
-
-                         tasklist.save(
-                             function (err) {
-                                 res.end();
-                             }
-                          );
-
                    
 
               });
