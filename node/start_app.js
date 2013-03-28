@@ -6,6 +6,13 @@ module.exports = function(){
 		global.config = config;
 
 
+	var db = require('mongoose');
+    	db.connect(config.creds.mongoose_auth,{ server: { poolSize: 1 }});
+
+    	global.db = db;
+		//db.connection.close();
+
+
 	/*Modules*/
 	var restify 	= require('restify');  
 

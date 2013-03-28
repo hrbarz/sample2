@@ -7,6 +7,11 @@ module.exports = function(server){
     	'/tasklist', 
     		require('./routes/tasklist/list') );  
 
+
+    server.post(
+    	'/task/', 
+    		require('./routes/task/save') );  
+
     	
     /*server.get(
     	'/tasklist/:id', tasklist.find);
