@@ -1,0 +1,29 @@
+<div class="accordion-group" id="item-task-<%- task._id %>"  >
+                    
+                    <div class="accordion-heading">
+                      <div class="check-line">
+                        
+                        <input type="checkbox" data-value="<%- task._id %>"  class="check-task inline" >    
+                      
+                         <a data-toggle="collapse" id="title-task-<%- task._id %>" data-parent="#accordion<%- task.tasklist %>" href="#collapse<%- task._id %>"><%- task.name %></a>
+
+                      </div>                                       
+                    </div>
+                    
+                    <div id="collapse<%- task._id %>" class="accordion-body collapse collapse">
+                      <div class="accordion-inner">
+                        
+                        <p id="description-task-<%- task._id %>" ><%- task.description %></p>
+                        
+                       <div class="buttons-action-task text-right">
+                          <button type="button" data-value="<%- task._id %>" class="btn-delete-task btn btn-danger btn-mini">Delete</button>
+                          <button type="button" class="btn btn-mini btn-edit-task" data-value="<%- task._id %>">Edit</button>
+                        </div>
+
+                        <hr>
+                        <small style="display:block">update: </small>
+                        <small>create:</small>
+                      </div>
+                    </div>
+
+                  </div>

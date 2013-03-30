@@ -5,7 +5,7 @@ module.exports = function(mongoose){
 	var tasklistSchema  = new Schema({  
 						    name: String,  
 						    description: String ,
-						    tasks: [{ type: Schema.Types.ObjectId, ref: 'task' }],
+						    tasks: [{ type: Schema.Types.ObjectId, ref: 'Task' }],
 						    created_at: { type: Date, default: Date.now },
 						    updated_at: { type: Date, default: Date.now }
 						});

@@ -3,14 +3,14 @@ module.exports = function(req,res){
 		res.header("Access-Control-Allow-Origin", config.AccessControlAllowOrigin); 
 		res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
-        var Tasklist  = require('../../models/tasklist')(db);
+        var Tasklist 	= require('../../models/tasklist')(db);
 
-      	var Task  = require('../../models/task')(db);
+      	var Task  		= require('../../models/task')(db);
 
 
         Tasklist
             .find()
-            .populate('task') // space delimited path names
+            .populate('tasks') // space delimited path names
             .exec(function (err, result) {
                 
               if (err) return handleError(err);

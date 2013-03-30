@@ -3,7 +3,7 @@ module.exports = function(mongoose){
 	var Schema = mongoose.Schema;
 
 	var taskSchema = new Schema({
-							tasklist: { type: Schema.Types.ObjectId, ref: 'tasklist' },
+							tasklist: { type: Schema.Types.ObjectId, ref: 'Tasklist' },
 						    name: String,  
 						    description: String ,
 						    created_at: { type: Date, default: Date.now },

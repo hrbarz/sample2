@@ -20,7 +20,8 @@
 
                 <div class="accordion" id="accordion<%- tasklist._id %>">
                   
-                  <% if(_.isUndefined(tasklist.tasks) == false) { %>
+
+                  <% if(_.isUndefined(tasklist.tasks) == false && tasklist.tasks != null ) { %>
 
                   <% _.each( tasklist.tasks, function( task ){ %>
 
@@ -29,9 +30,9 @@
                     <div class="accordion-heading">
                       <div class="check-line">
                         
-                        <input type="checkbox" data-value="<%- task.id %>"  class="check-task inline" >    
+                        <input type="checkbox" data-value="<%- task._id %>"  class="check-task inline" >    
                       
-                         <a data-toggle="collapse" id="title-task-<%- task.id %>" data-parent="#accordion<%- tasklist._id %>" href="#collapse<%- task.id %>"><%- task.name %></a>
+                         <a data-toggle="collapse" id="title-task-<%- task._id %>" data-parent="#accordion<%- tasklist._id %>" href="#collapse<%- task._id %>"><%- task.name %></a>
 
                       </div>                                       
                     </div>
