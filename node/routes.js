@@ -4,19 +4,19 @@ module.exports = function(server){
 	//Definiendo rutas para "tasklist"
 
     server.get(
-    	'tasklist', 
+    	'/tasklist', 
     		require('./routes/tasklist/list')); 
     	
     server.get(
-    	'tasklist/:id',
+    	'/tasklist/:id',
     		require('./routes/tasklist/id'));    
 
     server.del(
-    	'tasklist', 
+    	'/tasklist', 
     		require('./routes/tasklist/delete'));
 
 	server.put(
-    	'tasklist/:id',
+    	'/tasklist/:id',
     		require('./routes/tasklist/update'));
 
 
@@ -24,19 +24,19 @@ module.exports = function(server){
     
 
     server.post(
-    	'task', 
+    	'/task', 
     		require('./routes/task/new'));
 
     server.get(
-        'task/:id',
+        '/task/:id',
             require('./routes/task/id'));    
 
     server.del(
-    	'task/:id',
+    	'/task/:id',
     		require('./routes/task/delete'));
 
 	server.put(
-    	'task/:id',
+    	'/task/:id',
     		require('./routes/task/update'));
 
     	

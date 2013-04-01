@@ -43,6 +43,8 @@ define([
                 var tasklistAll = new TasklistCollection();             
                     tasklistAll.fetch({
 
+                        data: {page:1},
+
                         success: function(tasklist,data) {
 
                             $(that.el).html(_.template(tasklistTemplate, {list: data, _:_}));

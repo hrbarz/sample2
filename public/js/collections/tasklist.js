@@ -9,7 +9,7 @@ define([
         
         model: TasklistModel,
         
-        url: 'http://sample2.dev:3000/tasklist'
+        url: 'http://sample2.dev/tasklist'
   });
 
   return Tasklist;
