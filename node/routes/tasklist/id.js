@@ -11,7 +11,7 @@ module.exports = function(req,res){
             Tasklist.findById(req.params.id, function (err, tasklist) {
                 //if (err) return next(err);
 
-                res.send(tasklist);
+                res.send(tasklist.toJSON());
 
             });
         }

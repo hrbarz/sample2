@@ -14,8 +14,9 @@ module.exports = function(req,res){
             .exec(function (err, result) {
                 
               if (err) return handleError(err);
-                
+
                 res.send(result);
+            
             })
 
        /* Tasklist.find(function(err, records) {

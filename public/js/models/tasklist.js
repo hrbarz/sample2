@@ -7,7 +7,7 @@ define([
 			
 			//idAttribute: "_id",
         
-        	urlRoot: 'http://sample2.dev/tasklist',
+        	url: '/tasklist',
 
         	/*urlRoot: function(){
 				if (this.isNew()){

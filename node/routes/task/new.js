@@ -1,8 +1,13 @@
 module.exports = function(req,res){
 
-	res.header("Access-Control-Allow-Origin", config.AccessControlAllowOrigin); 
-	res.header("Access-Control-Allow-Headers", "X-Requested-With");
+	//res.header("Access-Control-Allow-Origin", config.AccessControlAllowOrigin); 
+	//res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
+	console.log(req.body);
+
+	if(req.body !== undefined){
+		req.params = req.body;
+	}
 	
 	var Tasklist 	= require( '../../models/tasklist' )(db);
 
