@@ -1,6 +1,3 @@
-// Filename: main.js
-// Require.js allows us to configure shortcut alias
-// Their usage will become more apparent futher along in the tutorial.
 require.config({
   paths: {
     jquery      : 'libs/jquery/jquery-min',
@@ -21,11 +18,15 @@ require.config({
 });
 
 require([
-  // Load our app module and pass it to our definition function
-  'app',
+  'views/app',
+  'router',
+  'vm'
+], function(AppView, Router, Vm){
+  
+  var appView = Vm.create({}, 'AppView', AppView);
+  
+  Router.initialize({appView: appView});
+  
+  appView.render(); // render() calls Backbone.history when its ready to start
 
-], function(App){
-  // The "app" dependency is passed in as "App"
-  // Again, the other dependencies passed in are not "AMD" therefore don't pass a parameter to this function
-  App.initialize();
 });
