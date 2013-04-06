@@ -4,6 +4,10 @@ module.exports = function(req,res){
 	res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
    	var Task  		= require( '../../models/task')(db);
+
+	if(req.body !== undefined){
+		req.params = req.body;
+	}   	
 	
 	if(req.params.id !== undefined ){
 
@@ -11,15 +15,23 @@ module.exports = function(req,res){
 			
 			if (err) { return next(err); }
 
-			task.name = req.params.name;
-			task.description = req.params.description;
+			if(req.params.name !== null && req.params.name !== undefined)
+				task.name = req.params.name;
+			
+			if(req.params.description !== null && req.params.description !== undefined)
+				task.description = req.params.description;
+
+			if(req.params.status !== null && req.params.status !== undefined)
+				task.status = req.params.status;
+
+
 			task.updated_at = Date();
 
 			task.save(function (err) {
 				
 				if (err) { return next(err); }
 
-				res.end();
+				res.send(task.toJSON());
 			
 			});
 		});

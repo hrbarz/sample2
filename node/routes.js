@@ -3,6 +3,10 @@ module.exports = function(server){
 
 	//Definiendo rutas para "tasklist"
 
+    server.post(
+        '/tasklist', 
+            require('./routes/tasklist/new'));
+    
     server.get(
     	'/tasklist', 
     		require('./routes/tasklist/list')); 
