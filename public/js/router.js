@@ -12,15 +12,26 @@ define([
   });
 
   var initialize = function(options){
-		var appView = options.appView;
+		
+    var appView = options.appView;
+    
     var router = new AppRouter(options);
 
 		router.on('route:defaultAction', function (actions) {
-			require(['views/dashboard/page'], function (DashboardPage) {
+
+      console.log(actions);
+      
+      require(['views/tasklistView'], function (ViewPage) {
+        var viewPage = Vm.create(appView, 'ViewPage', ViewPage);
+        viewPage.render();
+      });
+
+			/*require(['views/dashboard/page'], function (DashboardPage) {
         var dashboardPage = Vm.create(appView, 'DashboardPage', DashboardPage);
         dashboardPage.render();
-      });
-		});
+      });*/
+		
+    });
     
   };
   return {

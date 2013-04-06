@@ -10,7 +10,13 @@ module.exports = function(req,res){
 
         Tasklist
             .find()
-            .populate('tasks') // space delimited path names
+            .sort('-created_at')
+            .select('_id name description tasks')
+            .populate({
+                path    : 'tasks',
+                select  : '_id tasklist name description status',
+                options : { sort: [['created_at', -1 ]] }
+              })
             .exec(function (err, result) {
                 
               if (err) return handleError(err);

@@ -4,14 +4,18 @@ define([
   'backbone',
   'vm',
 	'events',
-  'text!templates/layout.html' 
-], function($, _, Backbone, Vm, Events, layoutTemplate){
+  'text!templates/base_tasklist.html',
+  'bootstrap'
+], function($, _, Backbone, Vm, Events, layoutTemplate,Bootstrap){
   var AppView = Backbone.View.extend({
     el: '.container',
     initialize: function () {
       
     },
     render: function () {
+
+      Bootstrap.initialize();
+
 			var that = this;
       $(this.el).html(layoutTemplate);
       Backbone.history.start();

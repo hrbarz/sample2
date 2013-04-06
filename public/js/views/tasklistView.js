@@ -78,7 +78,7 @@ define([
 
                 var data = modal_form.get_data();
 
-                if(_.isUndefined(data.id)){
+                if(_.isUndefined(data.id) || data.id == '' ){
                 
                     var tasklist = new TasklistModel();
                 
@@ -87,13 +87,32 @@ define([
                     var tasklist = new TasklistModel({id: data.id});                
                 
                 }
-                    tasklist.save(data, {
-                        
-                        success: function (model) {
-                            modal_form.hide_alert();                        
+                
+                delete data.id;
+                delete data.idparent;
+
+
+                tasklist.save(data, {
+                    
+                    success: function (tasklist) {
+
+                        if(modal_form.id_form.val() == ''){
+
+                          modal_form.id_form.val(tasklist.toJSON()._id);
+
+                          $('#list-tasklist').prepend(_.template(tasklistTemplate, {list: [tasklist.toJSON()], _:_}));
+
+                        }else{
+
+                          $('#item-tasklist-' + tasklist.toJSON()._id ).replaceWith(_.template(tasklistTemplate, {list: [tasklist.toJSON()] , _:_}));
+
                         }
 
-                    });
+                        modal_form.hide_alert(); 
+
+                    }
+
+                });
 
             },
 

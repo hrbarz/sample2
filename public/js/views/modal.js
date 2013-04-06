@@ -3,7 +3,9 @@ define(function() {
 
       show: function(params){
 
-        $('.save-changes-modal').on('click',function(){
+        $('.save-changes-modal').unbind();
+
+        $('.save-changes-modal').bind('click',function(){
 
             if(params.action_save !== undefined) params.action_save();
 
@@ -23,7 +25,9 @@ define(function() {
         this.action_form = $('#form_modal #action_form');
         this.id_form = $('#modal_id_form');
 
-        $('.close-modal').on('click',function(){
+
+        $('.close-modal').unbind();
+        $('.close-modal').bind('click',function(){
 
            $('.modal').addClass('hide');
            $('.modal-backdrop').addClass('hide');
@@ -56,7 +60,7 @@ define(function() {
 
               $('#alert-modal').addClass('hide');
 
-            }, 2000);
+            }, 1100);
     
       },
 

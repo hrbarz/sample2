@@ -4,18 +4,27 @@ define([
     'backbone',
     'collections/task',
     'models/task',
-    'views/modal'
-    ], function($,_,Backbone,TaskCollection,TaskModel,modal_form) {
+    'views/modal',
+    'text!templates/task.html'
+    ], function($,_,Backbone,TaskCollection,TaskModel,modal_form,taskTemplate) {
 
         	var Task = Backbone.View.extend({
 
-        		get_id: function(e){
+        		get_id		: function(e){
 				
 					return  $(e.srcElement).attr('data-value');
 	            
 	            },
 
-	            create: function(e){
+	            el_tasklist	: function(idparent){
+	            	return '#accordion' + idparent;
+	            },
+
+	            el_task 	: function(id){
+	            	return '#item-task-' + id;
+	            },
+
+	            create 		: function(e){
 
 					var idparent = this.get_id(e);
 
@@ -36,6 +45,8 @@ define([
 				},
 
 				save_data: function(){
+
+					that = this;
 
 					modal_form.show_alert();
 
@@ -59,13 +70,23 @@ define([
 					task.save(data, {
 				       
 				        success: function (task) {
-				            
-				            if(modal_form.id_form.val() == '')
-								modal_form.id_form.val(task.toJSON()._id)
 
+				            if(modal_form.id_form.val() == ''){
+							
+								modal_form.id_form.val(task.toJSON()._id);
+
+								$('#accordion' + data.tasklist).prepend(_.template(taskTemplate, {task: task.toJSON(), _:_}));
+							
+							}else{
+
+								$('#item-task-' + task.toJSON()._id ).replaceWith(_.template(taskTemplate, {task: task.toJSON(), _:_}));
+
+							}
 				            //$('#item-tasklist-0 .accordion').prepend(info);
 
-                            modal_form.hide_alert();                        
+                            modal_form.hide_alert();
+
+
 
 				        }
 				    });
@@ -74,7 +95,6 @@ define([
 
 				edit: function(e){
 
-	                that = this
 	            
 	                var id = this.get_id(e);
 
@@ -110,32 +130,51 @@ define([
 
 		            e = $(e.srcElement);
 
-		            var title_task = $('#title_task-task-'+ id );
+		            var title_task = $('#title-task-'+ id );
 
 	                if(title_task !== undefined){
 
 	                    if( $(e).is(':checked') ){
 	                        
-	                        //this.check(id);
+	                        this._check(id,function(){
+	                        	title_task.addClass('cross-out');
+	                        });
 
-	                        title_task.addClass('cross-out');
+	                        
 	                    
 	                    }else{
-	                        //this.undo_check(id);
+	                        
+	                         this._undo_check(id,function(){
+	                        	title_task.removeClass('cross-out');
+	                        });
 
-	                        title_task.removeClass('cross-out');
 	                    }
 	                }
 	            },
 
-	            _check: function (id){
+	            _check: function (id,trigger){
 
-	                console.log('Elemento '+ id +' chequeado')
+	               	var task = new TaskModel({id: id});                
+	                
+					task.save({status:'finish'}, {
+				       
+				        success: function (task) {
+				            trigger();
+				        }
+				    });          
+
 	            },
 
-	            _undo_check: function(id){
+	            _undo_check: function(id,trigger){
 
-	                console.log('Elemento '+ id +' deschequeado')
+	                var task = new TaskModel({id: id});                
+	                
+					task.save({status:'pending'}, {
+				       
+				        success: function () {
+				            trigger();
+				        }
+				    });    
 	            },
 
 	            delete: function(e){
