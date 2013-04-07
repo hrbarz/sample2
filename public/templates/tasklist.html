@@ -48,16 +48,14 @@
                         </div>
 
                         <hr>
-                        <small style="display:block">update: </small>
-                        <small>create:</small>
+                        <small style="display:block">update: <abbr class="timeago" title="<%- task.updated_at %>"></abbr>
+</small>
+                        <small>create: <abbr class="timeago" title="<%- task.created_at %>"></abbr></small>
                       </div>
                     </div>
 
                   </div>
                   <% }) } %>
-
-                  <%- tasklist.description  %>
-
                 </div>
               </div>
             </li>

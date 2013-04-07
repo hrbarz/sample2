@@ -20,8 +20,6 @@ module.exports = function(req,res){
 
 			Tasklist.findById(task.tasklist, function(err, tasklist){
 
-			console.log(tasklist);
-
 				tasklist.tasks.remove(req.params.id);
 
 				tasklist.save(function(err) {

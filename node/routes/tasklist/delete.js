@@ -8,13 +8,15 @@ module.exports = function(req,res){
 
    	var Task  		= require( '../../models/task')(db);
 	
-	if(req.params._id !== undefined ){		
+	if(req.params.id !== undefined ){		
 
-		Task.remove({tasklist: req.params._id}, function(err, numberRemoved) {		
+		Task.remove({tasklist: req.params.id}, function(err, numberRemoved) {		
 			//if(numberRemoved === 0) next(new Error("ID was not found."));
+			if (err) { return next(err); }
 			
-			Tasklist.remove({_id: req.params._id}, function(err, numberRemoved){
-
+			Tasklist.remove({id: req.params.id}, function(err, numberRemoved){
+				if (err) { return next(err); }
+				
 				res.end();
 
 			});

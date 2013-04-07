@@ -11,6 +11,9 @@ require.config({
     text        : 'libs/require/text',
     //order       : 'libs/require/order'
 
+    //vendors
+    timeago     : 'vendor/jquery.timeago'
+
   },
 
   urlArgs : "bust="+new Date().getTime()

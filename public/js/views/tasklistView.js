@@ -47,6 +47,8 @@ define([
                         success: function(tasklist,data) {
 
                             $(that.el).html(_.template(tasklistTemplate, {list: data, _:_}));
+                            
+                            $("abbr.timeago").timeago();                            
 
                         }
 
@@ -64,9 +66,15 @@ define([
 
                 if(confirm('You really want to delete?')){
 
-                    //tasklist.delete(id);
+                    var tasklist = new TasklistModel({id:id});
+            
+                    tasklist.destroy({
+                        success: function () {
+                            $('#item-tasklist-' + id).remove();
+                        }
+                    });
                  
-                    $('#item-tasklist-' + id).remove();
+                    
                  
                 }
 

@@ -16,7 +16,7 @@ module.exports = function(server){
     		require('./routes/tasklist/id'));    
 
     server.del(
-    	'/tasklist', 
+    	'/tasklist/:id', 
     		require('./routes/tasklist/delete'));
 
 	server.put(

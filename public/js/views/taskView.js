@@ -82,11 +82,10 @@ define([
 								$('#item-task-' + task.toJSON()._id ).replaceWith(_.template(taskTemplate, {task: task.toJSON(), _:_}));
 
 							}
-				            //$('#item-tasklist-0 .accordion').prepend(info);
 
                             modal_form.hide_alert();
 
-
+                            $("abbr.timeago").timeago();
 
 				        }
 				    });
