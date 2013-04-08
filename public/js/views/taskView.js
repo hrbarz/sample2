@@ -12,7 +12,7 @@ define([
 
         		get_id		: function(e){
 				
-					return  $(e.srcElement).attr('data-value');
+					return  $(e.target).attr('data-value');
 	            
 	            },
 
@@ -27,6 +27,8 @@ define([
 	            create 		: function(e){
 
 					var idparent = this.get_id(e);
+
+					
 
                 	modal_form.show({action_save:this.save_data});
 

@@ -57,7 +57,7 @@ define([
             },
 
             get_id: function(e){
-                 return  $(e.srcElement).attr('data-value');
+                 return  $(e.target).attr('data-value');
             },
             
             delete: function(e){
