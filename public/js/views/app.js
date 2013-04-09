@@ -15,6 +15,8 @@ define([
     },
     render: function () {
 
+      $.ajaxSetup({ cache: false });
+
       Bootstrap.initialize();
 
 			var that = this;
