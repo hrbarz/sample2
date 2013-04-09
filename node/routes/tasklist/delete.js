@@ -14,7 +14,7 @@ module.exports = function(req,res){
 			//if(numberRemoved === 0) next(new Error("ID was not found."));
 			if (err) { return next(err); }
 			
-			Tasklist.remove({id: req.params.id}, function(err, numberRemoved){
+			Tasklist.remove({_id: req.params.id}, function(err, numberRemoved){
 				if (err) { return next(err); }
 				
 				res.end();
