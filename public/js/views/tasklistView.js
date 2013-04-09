@@ -17,12 +17,12 @@ define([
 
             events: {
                 "click .btn-edit-tasklist"      : "edit",
-                "click .btn-delete-tasklist"    : "delete",
+                "click .btn-delete-tasklist"    : "deletes",
 
                 "change .check-task"            : "check_task",
                 "click .btn-new-task"           : "create_task",
                 "click .btn-delete-task"        : "delete_task",
-                "click .btn-edit-task"          : "edit_task",
+                "click .btn-edit-task"          : "edit_task"
 
             },
 
@@ -60,7 +60,7 @@ define([
                  return  $(e.target).attr('data-value');
             },
             
-            delete: function(e){
+            deletes: function(e){
 
                 var id = this.get_id(e);
 
@@ -175,9 +175,9 @@ define([
             },            
 
             check_task: function(e){ taskView.check(e) },
-            delete_task: function(e){ taskView.delete(e) },
+            delete_task: function(e){ taskView.deletes(e) },
             create_task: function(e){ taskView.create(e)},
-            edit_task: function(e){ taskView.edit(e)},
+            edit_task: function(e){ taskView.edit(e)}
             
 
        });

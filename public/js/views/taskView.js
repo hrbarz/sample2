@@ -178,7 +178,7 @@ define([
 				    });    
 	            },
 
-	            delete: function(e){
+	            deletes: function(e){
 
 					var id = this.get_id(e);
 

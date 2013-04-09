@@ -8,7 +8,7 @@ define([
 			
 			//idAttribute: "_id",
         
-        	urlRoot: '/task',
+        	urlRoot: '/task'
   		
   		});
 	
