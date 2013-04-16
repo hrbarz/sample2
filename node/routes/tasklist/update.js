@@ -13,29 +13,29 @@ module.exports = function(req,res){
 	if(req.params.id !== undefined ){
 
 		Tasklist
-		.findOne({ _id: req.params.id })
-        .select('_id name description tasks')
-		.populate({
-            path    : 'tasks',
-            select  : '_id tasklist name description status',
-            options : { sort: [['created_at', -1 ]] }
-         })
-		.exec(function(err, tasklist){
-			
-			if (err) { return next(err); }
-
-			tasklist.name = req.params.name;
-			tasklist.description = req.params.description;
-			
-			tasklist.updated_at = Date();
-
-			tasklist.save(function (err) {
-			
+			.findOne({ _id: req.params.id })
+        	.select('_id name description tasks')
+			.populate({
+	            path    : 'tasks',
+	            select  : '_id tasklist name description status',
+	            options : { sort: [['created_at', -1 ]] }
+	         })
+			.exec(function(err, tasklist){
+				
 				if (err) { return next(err); }
 
-				res.send(tasklist.toJSON());
-			
+				tasklist.name = req.params.name;
+				tasklist.description = req.params.description;
+				
+				tasklist.updated_at = Date();
+
+				tasklist.save(function (err) {
+				
+					if (err) { return next(err); }
+
+					res.send(tasklist.toJSON());
+				
+				});
 			});
-		});
 	}		
 }

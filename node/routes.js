@@ -33,7 +33,7 @@ module.exports = function(server){
 
     server.get(
         '/task/:id',
-            require('./routes/task/id'));    
+            require('./routes/task/id'));
 
     server.del(
     	'/task/:id',
@@ -42,6 +42,13 @@ module.exports = function(server){
 	server.put(
     	'/task/:id',
     		require('./routes/task/update'));
+
+
+
+
+    server.get(
+        '/tag/:name',
+            require('./routes/tag/list'));
 
     	
     /*server.get(

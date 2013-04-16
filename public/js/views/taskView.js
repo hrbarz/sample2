@@ -69,6 +69,8 @@ define([
 	                delete data.id;
 					delete data.idparent;
 
+					data.tags = get_hash_tags_text(data.name + ' ' + data.description);
+
 					task.save(data, {
 				       
 				        success: function (task) {
@@ -129,23 +131,19 @@ define([
 
 	                var id = this.get_id(e);
 
-		            e = $(e.srcElement);
-
 		            var title_task = $('#title-task-'+ id );
 
 	                if(title_task !== undefined){
 
-	                    if( $(e).is(':checked') ){
+	                    if( $(e.target).is(':checked') ){
 	                        
 	                        this._check(id,function(){
 	                        	title_task.addClass('cross-out');
 	                        });
-
-	                        
 	                    
 	                    }else{
 	                        
-	                         this._undo_check(id,function(){
+	                        this._undo_check(id,function(){
 	                        	title_task.removeClass('cross-out');
 	                        });
 

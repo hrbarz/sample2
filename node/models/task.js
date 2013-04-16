@@ -6,6 +6,7 @@ module.exports = function(mongoose){
 							tasklist: { type: Schema.Types.ObjectId, ref: 'Tasklist' },
 						    name: String,  
 						    description: String ,
+						    tags: [{ type: String , ref: 'Tag'}],
 						    status: { type: String, default: 'pending' },
 						    created_at: { type: Date, default: Date.now },
 						    updated_at: { type: Date, default: Date.now }

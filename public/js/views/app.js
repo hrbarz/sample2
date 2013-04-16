@@ -7,6 +7,7 @@ define([
   'text!templates/base_tasklist.html',
   'bootstrap',
   'timeago',
+  'scripts'
 ], function($, _, Backbone, Vm, Events, layoutTemplate,Bootstrap,Timeago){
   var AppView = Backbone.View.extend({
     el: '#container',
@@ -19,7 +20,7 @@ define([
 
       Bootstrap.initialize();
 
-			var that = this;
+      var that = this;
       $(this.el).html(layoutTemplate);
       Backbone.history.start();
 		} 

@@ -97,8 +97,7 @@ define([
                 }
                 
                 delete data.id;
-                delete data.idparent;
-
+                delete data.idparent;                
 
                 tasklist.save(data, {
                     
