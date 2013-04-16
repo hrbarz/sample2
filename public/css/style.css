@@ -40,6 +40,10 @@ section {
 
 }
 
+.accordion-group table, .accordion-group td, .accordion-group tr{
+  margin: 0;
+  padding: 0;
+}
 
 
 ::-webkit-scrollbar {

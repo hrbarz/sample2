@@ -5,7 +5,7 @@ require.config({
     backbone    : 'libs/backbone/backbone-min',
     io          : 'libs/socket-io/socket-io-min',
     
-    templates   : '../templates/',
+    templates   : '../templates',
   
     // Require.js plugins
     text        : 'libs/require/text',

@@ -15,7 +15,7 @@ module.exports = function(req,res){
 
 
 		
-		if(req.params.tags !== undefined || req.params.tags !== null ){
+		if(req.params.tags !== undefined && req.params.tags !== null ){
 
 			var Tags = [];
 

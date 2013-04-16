@@ -3,11 +3,25 @@
                     <div class="accordion-heading">
                       <div class="check-line">
                         
-                        <input type="checkbox" data-value="<%- task._id %>"  class="check-task inline" <% if(task.status == 'finish'){ %>checked="checked"<% } %> >    
+                        <table><tr>
+                          <td width="3%">
+                             <% if(task.status == 'finish'){ %>
+                             <button type="button" value="peding" class="check-task btn btn-success btn-mini" data-value="<%- task._id %>"><i class="icon-thumbs-up icon-white"></i></button>
+                             <% }else{ %>
+                             <button type="button" value="finish" class="check-task btn btn-danger btn-mini" data-value="<%- task._id %>"><i class="icon-thumbs-down icon-white"></i></button>
+                              <% }%>
+                        
+                          </td>
+                          <td style="padding-left:6px;">
                       
-                         <a data-toggle="collapse" id="title-task-<%- task._id %>" data-parent="#accordion<%- task.tasklist %>" href="#collapse<%- task._id %>" <% if(task.status == 'finish'){ %>class="cross-out"<% } %>><%- task.name %></a>
+                         <a data-toggle="collapse"  style="display:block" id="title-task-<%- task._id %>" data-parent="#accordion<%- task.tasklist %>" href="#collapse<%- task._id %>" <% if(task.status == 'finish'){ %>class="cross-out"<% } %>><%- task.name %></a>
+                         </td>
+                        </tr></table>
 
-                      </div>                                       
+                      </div>
+
+
+
                     </div>
                     
                     <div id="collapse<%- task._id %>" class="accordion-body collapse collapse">

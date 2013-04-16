@@ -19,7 +19,7 @@ define([
                 "click .btn-edit-tasklist"      : "edit",
                 "click .btn-delete-tasklist"    : "deletes",
 
-                "change .check-task"            : "check_task",
+                "click .check-task"            : "check_task",
                 "click .btn-new-task"           : "create_task",
                 "click .btn-delete-task"        : "delete_task",
                 "click .btn-edit-task"          : "edit_task"

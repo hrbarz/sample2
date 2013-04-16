@@ -129,22 +129,55 @@ define([
 
         		check : function(e){
 
-	                var id = this.get_id(e);
+        			var id = this.get_id(e);
+        			var btn_check = $(e.target);
+
+
+                	if(btn_check.attr('value') == undefined){ //Fix Event Click <button> OR <i>
+                		
+                		btn_check = btn_check.parent();
+                		id = btn_check.attr('data-value');
+                		
+                	}
+
+	                
 
 		            var title_task = $('#title-task-'+ id );
 
 	                if(title_task !== undefined){
 
-	                    if( $(e.target).is(':checked') ){
+
+
+	                    if( btn_check.attr('value') == 'finish' ){
 	                        
 	                        this._check(id,function(){
+	                        	
 	                        	title_task.addClass('cross-out');
+	                        	
+	                        	btn_check.removeClass('btn-danger');
+	                        	btn_check.addClass('btn-success');
+
+	                        	btn_check.find('i').removeClass('icon-thumbs-down');
+	                        	btn_check.find('i').addClass('icon-thumbs-up');
+
+	                        	btn_check.attr('value','pending');
+
 	                        });
 	                    
 	                    }else{
 	                        
 	                        this._undo_check(id,function(){
+
 	                        	title_task.removeClass('cross-out');
+
+	                        	btn_check.addClass('btn-danger');
+	                        	btn_check.removeClass('btn-success');
+
+	                        	btn_check.find('i').addClass('icon-thumbs-down');
+	                        	btn_check.find('i').removeClass('icon-thumbs-up');
+
+	                        	btn_check.attr('value','finish');	                        	
+
 	                        });
 
 	                    }
@@ -153,27 +186,27 @@ define([
 
 	            _check: function (id,trigger){
 
-	               	var task = new TaskModel({id: id});                
+	            	var task = new TaskModel({id: id});                
 	                
 					task.save({status:'finish'}, {
 				       
 				        success: function (task) {
 				            trigger();
 				        }
-				    });          
+				    });         
 
 	            },
 
 	            _undo_check: function(id,trigger){
 
-	                var task = new TaskModel({id: id});                
+	            	var task = new TaskModel({id: id});                
 	                
 					task.save({status:'pending'}, {
 				       
 				        success: function () {
 				            trigger();
 				        }
-				    });    
+				    });  
 	            },
 
 	            deletes: function(e){
