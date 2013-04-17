@@ -48,7 +48,9 @@ define([
 
                             $(that.el).html(_.template(tasklistTemplate, {list: data, _:_}));
                             
-                            $("abbr.timeago").timeago();                            
+                            $("abbr.timeago").timeago();
+
+                            $(".accordion-inner p").url2Link();                       
 
                         }
 

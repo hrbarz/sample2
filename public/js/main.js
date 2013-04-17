@@ -12,7 +12,8 @@ require.config({
     //order       : 'libs/require/order'
 
     //vendors
-    timeago     : 'vendor/jquery.timeago'
+    timeago     : 'vendor/jquery.timeago',
+    url2link    : 'vendor/jquery.url2link'
 
   },
 

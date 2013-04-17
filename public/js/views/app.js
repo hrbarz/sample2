@@ -7,6 +7,7 @@ define([
   'text!templates/base_tasklist.html',
   'bootstrap',
   'timeago',
+  'url2link',
   'scripts'
 ], function($, _, Backbone, Vm, Events, layoutTemplate,Bootstrap,Timeago){
   var AppView = Backbone.View.extend({

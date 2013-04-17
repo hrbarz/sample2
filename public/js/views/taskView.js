@@ -89,7 +89,10 @@ define([
 
                             modal_form.hide_alert();
 
+
                             $("abbr.timeago").timeago();
+                            $(".accordion-inner p").url2Link();                       
+
 
 				        }
 				    });
