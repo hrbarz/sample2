@@ -1,7 +1,42 @@
 define(function() {
   return {
 
+      reset: function(){
+
+          $('#modal_name').val('');
+          $('#modal_description').val('');
+          $('#modal_priority').val(0);
+          $('#action_form').val('');
+          $('#modal_id_form').val('');
+          $('#modal_idparent_form').val('');
+
+          $('.mondal-list-priority button').removeClass('active');
+          $('.mondal-list-priority button').each(function(){
+
+              if($(this).attr('value') == 0){
+                $(this).addClass('active');
+              }
+
+          });
+
+      },
+
       show: function(params){
+
+        
+
+        if(params.task == true){
+          
+            $('.only_task').removeClass('hide');
+
+        }else{
+
+            $('.only_task').addClass('hide');          
+
+        }
+
+        this.reset();
+
 
         $('.save-changes-modal').unbind();
 
@@ -60,7 +95,7 @@ define(function() {
 
               $('#alert-modal').addClass('hide');
 
-            }, 1100);
+            }, 400);
     
       },
 
@@ -76,6 +111,17 @@ define(function() {
 
             $('#modal_idparent_form').val(params.idparent);
 
+            $('.mondal-list-priority button').removeClass('active');
+            $('.mondal-list-priority button').each(function(){
+
+              if($(this).attr('value') == params.priority){
+                $(this).addClass('active');
+              }
+
+              $('#modal_priority').val(params.priority);
+
+            });
+
       },
 
       get_data: function(){
@@ -84,7 +130,8 @@ define(function() {
                     'id'          : $('#modal_id_form').val(),
                     'name'        : $('#modal_name').val(),
                     'description' : $('#modal_description').val(),
-                    'idparent'    : $('#modal_idparent_form').val()
+                    'idparent'    : $('#modal_idparent_form').val(),
+                    'priority'    : $('#modal_priority').val()
                 }
 
       }

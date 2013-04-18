@@ -30,13 +30,14 @@ define([
 
 					
 
-                	modal_form.show({action_save:this.save_data});
+                	modal_form.show({action_save:this.save_data,task:true});
 
 					modal_form.title.html('Create Task');
 
 					modal_form.set_data({
 							action 	:'task',
-							idparent:idparent 
+							idparent:idparent,
+							priority: 0
 						});
 
 
@@ -79,11 +80,28 @@ define([
 							
 								modal_form.id_form.val(task.toJSON()._id);
 
-								$('#accordion' + data.tasklist).prepend(_.template(taskTemplate, {task: task.toJSON(), _:_}));
+								//console.log('#accordion' + data.tasklist + '_' + task.toJSON().priority);
+								   
+								$('#accordion_' + data.tasklist + '_' + task.toJSON().priority).prepend(_.template(taskTemplate, {task: task.toJSON(), _:_}));
 							
 							}else{
 
-								$('#item-task-' + task.toJSON()._id ).replaceWith(_.template(taskTemplate, {task: task.toJSON(), _:_}));
+								var blockpriority = $('#accordion_' + data.tasklist + '_' + task.toJSON().priority + ' '+ '#item-task-' + task.toJSON()._id);
+
+								if(blockpriority.html() !== undefined){
+
+									$('#item-task-' + task.toJSON()._id ).replaceWith(_.template(taskTemplate, {task: task.toJSON(), _:_}));
+
+								}else{
+
+									$('#item-task-' + task.toJSON()._id).remove();
+
+									$('#accordion_' + data.tasklist + '_' + task.toJSON().priority).prepend(_.template(taskTemplate, {task: task.toJSON(), _:_}));
+
+
+								}
+
+								
 
 							}
 
@@ -104,7 +122,7 @@ define([
 	            
 	                var id = this.get_id(e);
 
-	                modal_form.show({action_save:this.save_data});
+	                modal_form.show({action_save:this.save_data,task:true});
 
 	                modal_form.title.html('Edit Task');
 
@@ -119,6 +137,7 @@ define([
 	                                name        : data.name,
 	                                description : data.description,
 	                                idparent	: data.tasklist,
+	                                priority	: data.priority,
 	                                action      : 'task'
 	                            });
 	                                                

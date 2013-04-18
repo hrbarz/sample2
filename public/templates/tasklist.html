@@ -1,6 +1,5 @@
-<% _.each( list, function( tasklist ){ %>
 
-            <li class="span3" id="item-tasklist-<%- tasklist._id %>">
+            <li class="span12" id="item-tasklist-<%- tasklist._id %>">
               
               <div style="padding:0 0 5px 0;"><strong><%- tasklist.name %></strong>
                 <div class="btn-group" style="float:right">
@@ -14,58 +13,32 @@
                 </div>
               </div>
 
-              <div style="overflow:auto; height:300px; border: 1px solid #ddd; padding: 5px;">
+              <div style="overflow:auto; border: 1px solid #ddd; padding: 5px;">
 
                 <button class="btn-new-task btn btn-small btn-block" data-value="<%- tasklist._id %>" style="margin-bottom:5px" type="button">new</button>
 
-                <div class="accordion" id="accordion<%- tasklist._id %>">
+                <div class="row-fluid">
                   
+                  <div class="span3 accordion block_priority_3" id="accordion_<%- tasklist._id %>_3" >
 
-                  <% if(_.isUndefined(tasklist.tasks) == false && tasklist.tasks != null ) { %>
-
-                  <% _.each( tasklist.tasks, function( task ){ %>
-
-                  <div class="accordion-group" id="item-task-<%- task._id %>"  >
-                    
-                    <div class="accordion-heading">
-                      <div class="check-line">
-                        <table><tr>
-                          <td width="3%">
-                             <% if(task.status == 'finish'){ %>
-                             <button type="button" value="peding" class="check-task btn btn-success btn-mini" data-value="<%- task._id %>"><i class="icon-thumbs-up icon-white"></i></button>
-                             <% }else{ %>
-                             <button type="button" value="finish" class="check-task btn btn-danger btn-mini" data-value="<%- task._id %>"><i class="icon-thumbs-down icon-white"></i></button>
-                              <% }%>
-                        
-                          </td>
-                          <td style="padding-left:6px;">
-                         <a data-toggle="collapse" style="display:block" data-parent="#accordion<%- tasklist._id %>" id="title-task-<%- task._id %>" href="#collapse<%- task._id %>" <% if(task.status == 'finish'){ %>class="cross-out"<% } %>><%- task.name %></a>
-                          </td>
-                        </tr></table>
-                      </div>                                       
-                    </div>
-                    
-                    <div id="collapse<%- task._id %>" class="accordion-body collapse">
-                      <div class="accordion-inner">
-                        
-                        <p id="description-task-<%- task._id %>" ><%- task.description %></p>
-                        
-                       <div class="buttons-action-task text-right">
-                         
-                          <button type="button" data-value="<%- task._id %>" class="btn-delete-task btn btn-danger btn-mini">Delete</button>
-                          <button type="button" class="btn btn-mini btn-edit-task" data-value="<%- task._id %>">Edit</button>
-                        </div>
-
-                        <hr>
-                        <small style="display:block">update: <abbr class="timeago" title="<%- task.updated_at %>"></abbr>
-</small>
-                        <small>create: <abbr class="timeago" title="<%- task.created_at %>"></abbr></small>
-                      </div>
-                    </div>
 
                   </div>
-                  <% }) } %>
+
+                  <div class="span3 accordion block_priority_2" id="accordion_<%- tasklist._id %>_2" >
+
+
+                  </div>
+
+                  <div class="span3 accordion block_priority_1" id="accordion_<%- tasklist._id %>_1" >
+
+
+                  </div>
+
+                  <div class="span3 accordion block_priority_0" id="accordion_<%- tasklist._id %>_0" >
+
+
+                  </div>
+                  
                 </div>
               </div>
             </li>
-<% }) %>

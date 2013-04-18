@@ -44,14 +44,16 @@ module.exports = function(req,res){
 			if(req.params.tags !== undefined)
 				task.tags = req.params.tags;
 
+			if(req.params.priority !== undefined)
+				task.priority = req.params.priority;
+
+
+
 			task.updated_at = Date();
 
 			task.save(function (err) {
 				
-				if (err) { return next(err); }
-
-
-				
+				if (err) { return next(err); }				
 
 				res.send(task.toJSON());
 			

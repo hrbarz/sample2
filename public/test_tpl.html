@@ -1,0 +1,945 @@
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <title>Sample 2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="tools/bootstrap/css/bootstrap.css" rel="stylesheet">
+    
+    <link href="css/docs.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <link href="tools/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+  <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="main" src="js/main.js"></script><link type="text/css" rel="stylesheet" href="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/style.css"><script type="text/javascript" charset="utf-8" src="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/page_context.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/app" src="js/views/app.js?bust=1366287500087"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="router" src="js/router.js?bust=1366287500087"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="vm" src="js/vm.js?bust=1366287500087"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery" src="js/libs/jquery/jquery-min.js?bust=1366287500087"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="underscore" src="js/libs/underscore/underscore-min.js?bust=1366287500087"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="backbone" src="js/libs/backbone/backbone-min.js?bust=1366287500087"></script>
+  <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="events" src="js/events.js?bust=1366287500087"></script>
+  <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="text" src="js/libs/require/text.js?bust=1366287500087"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="bootstrap" src="js/bootstrap.js?bust=1366287500087"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="timeago" src="js/vendor/jquery.timeago.js?bust=1366287500087"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="url2link" src="js/vendor/jquery.url2link.js?bust=1366287500087"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="scripts" src="js/scripts.js?bust=1366287500087"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/tasklistView" src="js/views/tasklistView.js?bust=1366287500087"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="collections/tasklist" src="js/collections/tasklist.js?bust=1366287500087"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="models/tasklist" src="js/models/tasklist.js?bust=1366287500087"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/taskView" src="js/views/taskView.js?bust=1366287500087"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="views/modal" src="js/views/modal.js?bust=1366287500087"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="collections/task" src="js/collections/task.js?bust=1366287500087"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="models/task" src="js/models/task.js?bust=1366287500087"></script></head>
+
+  <body screen_capture_injected="true">
+
+    <!-- Navbar
+    ================================================== -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="./index.html">Bootstrap</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="">
+                <a href="./index.html">Home</a>
+              </li>
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  <div class="container-fluid" id="container"><!-- Docs nav
+    ================================================== -->
+    <div class="row">
+        
+        <div class="span3">
+            <ul class="nav nav-list bs-docs-sidenav">
+                <li><a href="#tasklist"><i class="icon-chevron-right"></i> TaskList</a></li>
+            </ul>
+        </div>
+
+
+
+        <div class="span9">
+            <section>
+                <div class="page-header">
+                    <h1><button type="button" id="btn-new-tasklist" class="btn btn-info btn-small">new</button> Task List </h1>
+                </div>
+
+        
+                <div id="form-tasklist" class="modal hide" tabindex="-1">
+              
+                    <div class="container-modal">
+                        
+                        <div class="modal-header">
+                            <button type="button" class="close close-modal">×</button>
+                            <h3 id="myModalLabel">Task List</h3>
+                        </div>
+
+                        <div class="alert alert-success hide" id="alert-modal">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>Save!</strong>
+                        </div>
+                
+                        <div class="modal-body">
+
+                            <form id="form_modal">
+                          
+                                <label>Name</label>
+                                <input type="text" id="modal_name" class="span5">
+
+                                <label>Description</label>
+                                <textarea rows="3" id="modal_description" class="span5"></textarea>
+
+                                <input type="hidden" id="action_form">
+                                <input type="hidden" id="modal_id_form">
+                                <input type="hidden" id="modal_idparent_form">
+
+                            </form>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn close-modal">Close</button>
+                            <button class="btn btn-primary save-changes-modal">Save changes</button>
+                        </div>
+                    </div>
+            
+                    <div class="loading-modal"></div>
+                </div>
+
+
+
+                <ul class="thumbnails" id="list-tasklist">
+
+
+            
+            <li class="span12" id="item-tasklist-514cb0f426dbbe1409000001">
+              
+              <div style="padding:0 0 5px 0;"><strong>Etapa 1</strong>
+                <div class="btn-group" style="float:right">
+                  <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a href="#" class="btn-edit-tasklist" data-value="514cb0f426dbbe1409000001">Edit</a></li>
+                    <li><a href="#" class="btn-delete-tasklist" data-value="514cb0f426dbbe1409000001">Delete</a></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div style="overflow:auto; border: 1px solid #ddd; padding: 5px;">
+
+                <button class="btn-new-task btn btn-small btn-block" data-value="514cb0f426dbbe1409000001" style="margin-bottom:5px" type="button">new</button>
+
+                
+                <div class="row-fluid">
+
+                  <div class="span3 accordion" id="accordion514cb0f426dbbe1409000001">
+
+
+                      <div class="accordion-group" id="item-task-516dc0b15b1c63fc13000002">
+                        
+                        <div class="accordion-heading">
+                          <div class="check-line">
+                            <table><tbody><tr>
+                              <td width="3%">
+                                 
+                                 <button type="button" value="peding" class="check-task btn btn-success btn-mini" data-value="516dc0b15b1c63fc13000002"><i class="icon-thumbs-up icon-white"></i></button>
+                                 
+                            
+                              </td>
+                              <td style="padding-left:6px;">
+                             <a data-toggle="collapse" style="display:block" data-parent="#accordion514cb0f426dbbe1409000001" id="title-task-516dc0b15b1c63fc13000002" href="#collapse516dc0b15b1c63fc13000002" class="cross-out">Botones</a>
+                              </td>
+                            </tr></tbody></table>
+                          </div>                                       
+                        </div>
+                        
+                        <div id="collapse516dc0b15b1c63fc13000002" class="accordion-body collapse">
+                          <div class="accordion-inner">
+                            
+                            <p id="description-task-516dc0b15b1c63fc13000002">#colores <a href="http://google.com">http://google.com</a></p>
+                            
+                           <div class="buttons-action-task text-right">
+                             
+                              <button type="button" data-value="516dc0b15b1c63fc13000002" class="btn-delete-task btn btn-danger btn-mini">Delete</button>
+                              <button type="button" class="btn btn-mini btn-edit-task" data-value="516dc0b15b1c63fc13000002">Edit</button>
+                            </div>
+
+                            <hr>
+                            <small style="display:block">update: <abbr class="timeago" title="2013-04-17T14:46:12.000Z">aprox 22 horas atrás</abbr>
+                          </small>
+                            <small>create: <abbr class="timeago" title="2013-04-16T21:20:49.497Z">un dia atrás</abbr></small>
+                          </div>
+                        </div>
+
+                      </div>
+                    
+
+                      <div class="accordion-group" id="item-task-516d736e5aa0b31c10000001">
+                        
+                        <div class="accordion-heading">
+                          <div class="check-line">
+                            <table><tbody><tr>
+                              <td width="3%">
+                                 
+                                 <button type="button" value="finish" class="check-task btn btn-danger btn-mini" data-value="516d736e5aa0b31c10000001"><i class="icon-thumbs-down icon-white"></i></button>
+                                  
+                            
+                              </td>
+                              <td style="padding-left:6px;">
+                             <a data-toggle="collapse" style="display:block" data-parent="#accordion514cb0f426dbbe1409000001" id="title-task-516d736e5aa0b31c10000001" href="#collapse516d736e5aa0b31c10000001">#hello</a>
+                              </td>
+                            </tr></tbody></table>
+                          </div>                                       
+                        </div>
+                        
+                          <div id="collapse516d736e5aa0b31c10000001" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                              
+                              <p id="description-task-516d736e5aa0b31c10000001">#world etiquetas</p>
+                              
+                             <div class="buttons-action-task text-right">
+                               
+                                <button type="button" data-value="516d736e5aa0b31c10000001" class="btn-delete-task btn btn-danger btn-mini">Delete</button>
+                                <button type="button" class="btn btn-mini btn-edit-task" data-value="516d736e5aa0b31c10000001">Edit</button>
+                              </div>
+
+                              <hr>
+                              <small style="display:block">update: <abbr class="timeago" title="2013-04-16T21:19:28.000Z">un dia atrás</abbr></small>
+                              <small>create: <abbr class="timeago" title="2013-04-16T15:51:10.352Z">2 dias atrás</abbr></small>
+                            </div>
+                          </div>
+
+                      </div>
+                    
+
+                      <div class="accordion-group" id="item-task-5154b1cc9a236db81c000001">
+                        
+                        <div class="accordion-heading">
+                          <div class="check-line">
+                            <table><tbody><tr>
+                              <td width="3%">
+                                 
+                                 <button type="button" value="finish" class="check-task btn btn-danger btn-mini" data-value="5154b1cc9a236db81c000001"><i class="icon-thumbs-down icon-white"></i></button>
+                                  
+                            
+                              </td>
+                              <td style="padding-left:6px;">
+                             <a data-toggle="collapse" style="display:block" data-parent="#accordion514cb0f426dbbe1409000001" id="title-task-5154b1cc9a236db81c000001" href="#collapse5154b1cc9a236db81c000001">Hacer algo</a>
+                              </td>
+                            </tr></tbody></table>
+                          </div>                                       
+                        </div>
+                        
+                        <div id="collapse5154b1cc9a236db81c000001" class="accordion-body collapse">
+                          <div class="accordion-inner">
+                            
+                            <p id="description-task-5154b1cc9a236db81c000001">Node</p>
+                            
+                           <div class="buttons-action-task text-right">
+                             
+                              <button type="button" data-value="5154b1cc9a236db81c000001" class="btn-delete-task btn btn-danger btn-mini">Delete</button>
+                              <button type="button" class="btn btn-mini btn-edit-task" data-value="5154b1cc9a236db81c000001">Edit</button>
+                            </div>
+
+                            <hr>
+                            <small style="display:block">update: <abbr class="timeago" title="2013-04-16T21:17:51.000Z">un dia atrás</abbr></small>
+                            <small>create: <abbr class="timeago" title="2013-03-28T21:10:36.844Z">21 dias atrás</abbr></small>
+                          </div>
+                        </div>
+
+                      </div>
+
+
+                      <div class="accordion-group" id="item-task-5154b1cc9a236db81c000001">
+                        
+                        <div class="accordion-heading">
+                          <div class="check-line">
+                            <table><tbody><tr>
+                              <td width="3%">
+                                 
+                                 <button type="button" value="finish" class="check-task btn btn-danger btn-mini" data-value="5154b1cc9a236db81c000001"><i class="icon-thumbs-down icon-white"></i></button>
+                                  
+                            
+                              </td>
+                              <td style="padding-left:6px;">
+                             <a data-toggle="collapse" style="display:block" data-parent="#accordion514cb0f426dbbe1409000001" id="title-task-5154b1cc9a236db81c000001" href="#collapse5154b1cc9a236db81c000001">Hacer algo</a>
+                              </td>
+                            </tr></tbody></table>
+                          </div>                                       
+                        </div>
+                        
+                        <div id="collapse5154b1cc9a236db81c000001" class="accordion-body collapse">
+                          <div class="accordion-inner">
+                            
+                            <p id="description-task-5154b1cc9a236db81c000001">Node</p>
+                            
+                           <div class="buttons-action-task text-right">
+                             
+                              <button type="button" data-value="5154b1cc9a236db81c000001" class="btn-delete-task btn btn-danger btn-mini">Delete</button>
+                              <button type="button" class="btn btn-mini btn-edit-task" data-value="5154b1cc9a236db81c000001">Edit</button>
+                            </div>
+
+                            <hr>
+                            <small style="display:block">update: <abbr class="timeago" title="2013-04-16T21:17:51.000Z">un dia atrás</abbr></small>
+                            <small>create: <abbr class="timeago" title="2013-03-28T21:10:36.844Z">21 dias atrás</abbr></small>
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="accordion-group" id="item-task-5154b1cc9a236db81c000001">
+                        
+                        <div class="accordion-heading">
+                          <div class="check-line">
+                            <table><tbody><tr>
+                              <td width="3%">
+                                 
+                                 <button type="button" value="finish" class="check-task btn btn-danger btn-mini" data-value="5154b1cc9a236db81c000001"><i class="icon-thumbs-down icon-white"></i></button>
+                                  
+                            
+                              </td>
+                              <td style="padding-left:6px;">
+                             <a data-toggle="collapse" style="display:block" data-parent="#accordion514cb0f426dbbe1409000001" id="title-task-5154b1cc9a236db81c000001" href="#collapse5154b1cc9a236db81c000001">Hacer algo</a>
+                              </td>
+                            </tr></tbody></table>
+                          </div>                                       
+                        </div>
+                        
+                        <div id="collapse5154b1cc9a236db81c000001" class="accordion-body collapse">
+                          <div class="accordion-inner">
+                            
+                            <p id="description-task-5154b1cc9a236db81c000001">Node</p>
+                            
+                           <div class="buttons-action-task text-right">
+                             
+                              <button type="button" data-value="5154b1cc9a236db81c000001" class="btn-delete-task btn btn-danger btn-mini">Delete</button>
+                              <button type="button" class="btn btn-mini btn-edit-task" data-value="5154b1cc9a236db81c000001">Edit</button>
+                            </div>
+
+                            <hr>
+                            <small style="display:block">update: <abbr class="timeago" title="2013-04-16T21:17:51.000Z">un dia atrás</abbr></small>
+                            <small>create: <abbr class="timeago" title="2013-03-28T21:10:36.844Z">21 dias atrás</abbr></small>
+                          </div>
+                        </div>
+
+                      </div>
+
+
+                      <div class="accordion-group" id="item-task-5154b1cc9a236db81c000001">
+                        
+                        <div class="accordion-heading">
+                          <div class="check-line">
+                            <table><tbody><tr>
+                              <td width="3%">
+                                 
+                                 <button type="button" value="finish" class="check-task btn btn-danger btn-mini" data-value="5154b1cc9a236db81c000001"><i class="icon-thumbs-down icon-white"></i></button>
+                                  
+                            
+                              </td>
+                              <td style="padding-left:6px;">
+                             <a data-toggle="collapse" style="display:block" data-parent="#accordion514cb0f426dbbe1409000001" id="title-task-5154b1cc9a236db81c000001" href="#collapse5154b1cc9a236db81c000001">Hacer algo</a>
+                              </td>
+                            </tr></tbody></table>
+                          </div>                                       
+                        </div>
+                        
+                        <div id="collapse5154b1cc9a236db81c000001" class="accordion-body collapse">
+                          <div class="accordion-inner">
+                            
+                            <p id="description-task-5154b1cc9a236db81c000001">Node</p>
+                            
+                           <div class="buttons-action-task text-right">
+                             
+                              <button type="button" data-value="5154b1cc9a236db81c000001" class="btn-delete-task btn btn-danger btn-mini">Delete</button>
+                              <button type="button" class="btn btn-mini btn-edit-task" data-value="5154b1cc9a236db81c000001">Edit</button>
+                            </div>
+
+                            <hr>
+                            <small style="display:block">update: <abbr class="timeago" title="2013-04-16T21:17:51.000Z">un dia atrás</abbr></small>
+                            <small>create: <abbr class="timeago" title="2013-03-28T21:10:36.844Z">21 dias atrás</abbr></small>
+                          </div>
+                        </div>
+
+                      </div>
+
+
+                      <div class="accordion-group" id="item-task-5154b1cc9a236db81c000001">
+                        
+                        <div class="accordion-heading">
+                          <div class="check-line">
+                            <table><tbody><tr>
+                              <td width="3%">
+                                 
+                                 <button type="button" value="finish" class="check-task btn btn-danger btn-mini" data-value="5154b1cc9a236db81c000001"><i class="icon-thumbs-down icon-white"></i></button>
+                                  
+                            
+                              </td>
+                              <td style="padding-left:6px;">
+                             <a data-toggle="collapse" style="display:block" data-parent="#accordion514cb0f426dbbe1409000001" id="title-task-5154b1cc9a236db81c000001" href="#collapse5154b1cc9a236db81c000001">Hacer algo</a>
+                              </td>
+                            </tr></tbody></table>
+                          </div>                                       
+                        </div>
+                        
+                        <div id="collapse5154b1cc9a236db81c000001" class="accordion-body collapse">
+                          <div class="accordion-inner">
+                            
+                            <p id="description-task-5154b1cc9a236db81c000001">Node</p>
+                            
+                           <div class="buttons-action-task text-right">
+                             
+                              <button type="button" data-value="5154b1cc9a236db81c000001" class="btn-delete-task btn btn-danger btn-mini">Delete</button>
+                              <button type="button" class="btn btn-mini btn-edit-task" data-value="5154b1cc9a236db81c000001">Edit</button>
+                            </div>
+
+                            <hr>
+                            <small style="display:block">update: <abbr class="timeago" title="2013-04-16T21:17:51.000Z">un dia atrás</abbr></small>
+                            <small>create: <abbr class="timeago" title="2013-03-28T21:10:36.844Z">21 dias atrás</abbr></small>
+                          </div>
+                        </div>
+
+                      </div>
+
+
+                      <div class="accordion-group" id="item-task-5154b1cc9a236db81c000001">
+                        
+                        <div class="accordion-heading">
+                          <div class="check-line">
+                            <table><tbody><tr>
+                              <td width="3%">
+                                 
+                                 <button type="button" value="finish" class="check-task btn btn-danger btn-mini" data-value="5154b1cc9a236db81c000001"><i class="icon-thumbs-down icon-white"></i></button>
+                                  
+                            
+                              </td>
+                              <td style="padding-left:6px;">
+                             <a data-toggle="collapse" style="display:block" data-parent="#accordion514cb0f426dbbe1409000001" id="title-task-5154b1cc9a236db81c000001" href="#collapse5154b1cc9a236db81c000001">Hacer algo</a>
+                              </td>
+                            </tr></tbody></table>
+                          </div>                                       
+                        </div>
+                        
+                        <div id="collapse5154b1cc9a236db81c000001" class="accordion-body collapse">
+                          <div class="accordion-inner">
+                            
+                            <p id="description-task-5154b1cc9a236db81c000001">Node</p>
+                            
+                           <div class="buttons-action-task text-right">
+                             
+                              <button type="button" data-value="5154b1cc9a236db81c000001" class="btn-delete-task btn btn-danger btn-mini">Delete</button>
+                              <button type="button" class="btn btn-mini btn-edit-task" data-value="5154b1cc9a236db81c000001">Edit</button>
+                            </div>
+
+                            <hr>
+                            <small style="display:block">update: <abbr class="timeago" title="2013-04-16T21:17:51.000Z">un dia atrás</abbr></small>
+                            <small>create: <abbr class="timeago" title="2013-03-28T21:10:36.844Z">21 dias atrás</abbr></small>
+                          </div>
+                        </div>
+
+                      </div>
+
+
+                      <div class="accordion-group" id="item-task-5154b1cc9a236db81c000001">
+                        
+                        <div class="accordion-heading">
+                          <div class="check-line">
+                            <table><tbody><tr>
+                              <td width="3%">
+                                 
+                                 <button type="button" value="finish" class="check-task btn btn-danger btn-mini" data-value="5154b1cc9a236db81c000001"><i class="icon-thumbs-down icon-white"></i></button>
+                                  
+                            
+                              </td>
+                              <td style="padding-left:6px;">
+                             <a data-toggle="collapse" style="display:block" data-parent="#accordion514cb0f426dbbe1409000001" id="title-task-5154b1cc9a236db81c000001" href="#collapse5154b1cc9a236db81c000001">Hacer algo</a>
+                              </td>
+                            </tr></tbody></table>
+                          </div>                                       
+                        </div>
+                        
+                        <div id="collapse5154b1cc9a236db81c000001" class="accordion-body collapse">
+                          <div class="accordion-inner">
+                            
+                            <p id="description-task-5154b1cc9a236db81c000001">Node</p>
+                            
+                           <div class="buttons-action-task text-right">
+                             
+                              <button type="button" data-value="5154b1cc9a236db81c000001" class="btn-delete-task btn btn-danger btn-mini">Delete</button>
+                              <button type="button" class="btn btn-mini btn-edit-task" data-value="5154b1cc9a236db81c000001">Edit</button>
+                            </div>
+
+                            <hr>
+                            <small style="display:block">update: <abbr class="timeago" title="2013-04-16T21:17:51.000Z">un dia atrás</abbr></small>
+                            <small>create: <abbr class="timeago" title="2013-03-28T21:10:36.844Z">21 dias atrás</abbr></small>
+                          </div>
+                        </div>
+
+                      </div>
+
+
+                      <div class="accordion-group" id="item-task-5154b1cc9a236db81c000001">
+                        
+                        <div class="accordion-heading">
+                          <div class="check-line">
+                            <table><tbody><tr>
+                              <td width="3%">
+                                 
+                                 <button type="button" value="finish" class="check-task btn btn-danger btn-mini" data-value="5154b1cc9a236db81c000001"><i class="icon-thumbs-down icon-white"></i></button>
+                                  
+                            
+                              </td>
+                              <td style="padding-left:6px;">
+                             <a data-toggle="collapse" style="display:block" data-parent="#accordion514cb0f426dbbe1409000001" id="title-task-5154b1cc9a236db81c000001" href="#collapse5154b1cc9a236db81c000001">Hacer algo</a>
+                              </td>
+                            </tr></tbody></table>
+                          </div>                                       
+                        </div>
+                        
+                        <div id="collapse5154b1cc9a236db81c000001" class="accordion-body collapse">
+                          <div class="accordion-inner">
+                            
+                            <p id="description-task-5154b1cc9a236db81c000001">Node</p>
+                            
+                           <div class="buttons-action-task text-right">
+                             
+                              <button type="button" data-value="5154b1cc9a236db81c000001" class="btn-delete-task btn btn-danger btn-mini">Delete</button>
+                              <button type="button" class="btn btn-mini btn-edit-task" data-value="5154b1cc9a236db81c000001">Edit</button>
+                            </div>
+
+                            <hr>
+                            <small style="display:block">update: <abbr class="timeago" title="2013-04-16T21:17:51.000Z">un dia atrás</abbr></small>
+                            <small>create: <abbr class="timeago" title="2013-03-28T21:10:36.844Z">21 dias atrás</abbr></small>
+                          </div>
+                        </div>
+
+                      </div>
+
+
+                      <div class="accordion-group" id="item-task-5154b1cc9a236db81c000001">
+                        
+                        <div class="accordion-heading">
+                          <div class="check-line">
+                            <table><tbody><tr>
+                              <td width="3%">
+                                 
+                                 <button type="button" value="finish" class="check-task btn btn-danger btn-mini" data-value="5154b1cc9a236db81c000001"><i class="icon-thumbs-down icon-white"></i></button>
+                                  
+                            
+                              </td>
+                              <td style="padding-left:6px;">
+                             <a data-toggle="collapse" style="display:block" data-parent="#accordion514cb0f426dbbe1409000001" id="title-task-5154b1cc9a236db81c000001" href="#collapse5154b1cc9a236db81c000001">Hacer algo</a>
+                              </td>
+                            </tr></tbody></table>
+                          </div>                                       
+                        </div>
+                        
+                        <div id="collapse5154b1cc9a236db81c000001" class="accordion-body collapse">
+                          <div class="accordion-inner">
+                            
+                            <p id="description-task-5154b1cc9a236db81c000001">Node</p>
+                            
+                           <div class="buttons-action-task text-right">
+                             
+                              <button type="button" data-value="5154b1cc9a236db81c000001" class="btn-delete-task btn btn-danger btn-mini">Delete</button>
+                              <button type="button" class="btn btn-mini btn-edit-task" data-value="5154b1cc9a236db81c000001">Edit</button>
+                            </div>
+
+                            <hr>
+                            <small style="display:block">update: <abbr class="timeago" title="2013-04-16T21:17:51.000Z">un dia atrás</abbr></small>
+                            <small>create: <abbr class="timeago" title="2013-03-28T21:10:36.844Z">21 dias atrás</abbr></small>
+                          </div>
+                        </div>
+
+                      </div>
+                  </div>
+
+                                    <div class="span3 accordion" id="accordion514cb0f426dbbe1409000001">
+
+
+                      <div class="accordion-group" id="item-task-516dc0b15b1c63fc13000002">
+                        
+                        <div class="accordion-heading">
+                          <div class="check-line">
+                            <table><tbody><tr>
+                              <td width="3%">
+                                 
+                                 <button type="button" value="peding" class="check-task btn btn-success btn-mini" data-value="516dc0b15b1c63fc13000002"><i class="icon-thumbs-up icon-white"></i></button>
+                                 
+                            
+                              </td>
+                              <td style="padding-left:6px;">
+                             <a data-toggle="collapse" style="display:block" data-parent="#accordion514cb0f426dbbe1409000001" id="title-task-516dc0b15b1c63fc13000002" href="#collapse516dc0b15b1c63fc13000002" class="cross-out">Botones</a>
+                              </td>
+                            </tr></tbody></table>
+                          </div>                                       
+                        </div>
+                        
+                        <div id="collapse516dc0b15b1c63fc13000002" class="accordion-body collapse">
+                          <div class="accordion-inner">
+                            
+                            <p id="description-task-516dc0b15b1c63fc13000002">#colores <a href="http://google.com">http://google.com</a></p>
+                            
+                           <div class="buttons-action-task text-right">
+                             
+                              <button type="button" data-value="516dc0b15b1c63fc13000002" class="btn-delete-task btn btn-danger btn-mini">Delete</button>
+                              <button type="button" class="btn btn-mini btn-edit-task" data-value="516dc0b15b1c63fc13000002">Edit</button>
+                            </div>
+
+                            <hr>
+                            <small style="display:block">update: <abbr class="timeago" title="2013-04-17T14:46:12.000Z">aprox 22 horas atrás</abbr>
+                          </small>
+                            <small>create: <abbr class="timeago" title="2013-04-16T21:20:49.497Z">un dia atrás</abbr></small>
+                          </div>
+                        </div>
+
+                      </div>
+                    
+
+                      <div class="accordion-group" id="item-task-516d736e5aa0b31c10000001">
+                        
+                        <div class="accordion-heading">
+                          <div class="check-line">
+                            <table><tbody><tr>
+                              <td width="3%">
+                                 
+                                 <button type="button" value="finish" class="check-task btn btn-danger btn-mini" data-value="516d736e5aa0b31c10000001"><i class="icon-thumbs-down icon-white"></i></button>
+                                  
+                            
+                              </td>
+                              <td style="padding-left:6px;">
+                             <a data-toggle="collapse" style="display:block" data-parent="#accordion514cb0f426dbbe1409000001" id="title-task-516d736e5aa0b31c10000001" href="#collapse516d736e5aa0b31c10000001">#hello</a>
+                              </td>
+                            </tr></tbody></table>
+                          </div>                                       
+                        </div>
+                        
+                          <div id="collapse516d736e5aa0b31c10000001" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                              
+                              <p id="description-task-516d736e5aa0b31c10000001">#world etiquetas</p>
+                              
+                             <div class="buttons-action-task text-right">
+                               
+                                <button type="button" data-value="516d736e5aa0b31c10000001" class="btn-delete-task btn btn-danger btn-mini">Delete</button>
+                                <button type="button" class="btn btn-mini btn-edit-task" data-value="516d736e5aa0b31c10000001">Edit</button>
+                              </div>
+
+                              <hr>
+                              <small style="display:block">update: <abbr class="timeago" title="2013-04-16T21:19:28.000Z">un dia atrás</abbr></small>
+                              <small>create: <abbr class="timeago" title="2013-04-16T15:51:10.352Z">2 dias atrás</abbr></small>
+                            </div>
+                          </div>
+
+                      </div>
+                    
+
+                      <div class="accordion-group" id="item-task-5154b1cc9a236db81c000001">
+                        
+                        <div class="accordion-heading">
+                          <div class="check-line">
+                            <table><tbody><tr>
+                              <td width="3%">
+                                 
+                                 <button type="button" value="finish" class="check-task btn btn-danger btn-mini" data-value="5154b1cc9a236db81c000001"><i class="icon-thumbs-down icon-white"></i></button>
+                                  
+                            
+                              </td>
+                              <td style="padding-left:6px;">
+                             <a data-toggle="collapse" style="display:block" data-parent="#accordion514cb0f426dbbe1409000001" id="title-task-5154b1cc9a236db81c000001" href="#collapse5154b1cc9a236db81c000001">Hacer algo</a>
+                              </td>
+                            </tr></tbody></table>
+                          </div>                                       
+                        </div>
+                        
+                        <div id="collapse5154b1cc9a236db81c000001" class="accordion-body collapse">
+                          <div class="accordion-inner">
+                            
+                            <p id="description-task-5154b1cc9a236db81c000001">Node</p>
+                            
+                           <div class="buttons-action-task text-right">
+                             
+                              <button type="button" data-value="5154b1cc9a236db81c000001" class="btn-delete-task btn btn-danger btn-mini">Delete</button>
+                              <button type="button" class="btn btn-mini btn-edit-task" data-value="5154b1cc9a236db81c000001">Edit</button>
+                            </div>
+
+                            <hr>
+                            <small style="display:block">update: <abbr class="timeago" title="2013-04-16T21:17:51.000Z">un dia atrás</abbr></small>
+                            <small>create: <abbr class="timeago" title="2013-03-28T21:10:36.844Z">21 dias atrás</abbr></small>
+                          </div>
+                        </div>
+
+                      </div>
+                    
+                  </div>
+
+                                    <div class="span3 accordion" id="accordion514cb0f426dbbe1409000001">
+
+
+                      <div class="accordion-group" id="item-task-516dc0b15b1c63fc13000002">
+                        
+                        <div class="accordion-heading">
+                          <div class="check-line">
+                            <table><tbody><tr>
+                              <td width="3%">
+                                 
+                                 <button type="button" value="peding" class="check-task btn btn-success btn-mini" data-value="516dc0b15b1c63fc13000002"><i class="icon-thumbs-up icon-white"></i></button>
+                                 
+                            
+                              </td>
+                              <td style="padding-left:6px;">
+                             <a data-toggle="collapse" style="display:block" data-parent="#accordion514cb0f426dbbe1409000001" id="title-task-516dc0b15b1c63fc13000002" href="#collapse516dc0b15b1c63fc13000002" class="cross-out">Botones</a>
+                              </td>
+                            </tr></tbody></table>
+                          </div>                                       
+                        </div>
+                        
+                        <div id="collapse516dc0b15b1c63fc13000002" class="accordion-body collapse">
+                          <div class="accordion-inner">
+                            
+                            <p id="description-task-516dc0b15b1c63fc13000002">#colores <a href="http://google.com">http://google.com</a></p>
+                            
+                           <div class="buttons-action-task text-right">
+                             
+                              <button type="button" data-value="516dc0b15b1c63fc13000002" class="btn-delete-task btn btn-danger btn-mini">Delete</button>
+                              <button type="button" class="btn btn-mini btn-edit-task" data-value="516dc0b15b1c63fc13000002">Edit</button>
+                            </div>
+
+                            <hr>
+                            <small style="display:block">update: <abbr class="timeago" title="2013-04-17T14:46:12.000Z">aprox 22 horas atrás</abbr>
+                          </small>
+                            <small>create: <abbr class="timeago" title="2013-04-16T21:20:49.497Z">un dia atrás</abbr></small>
+                          </div>
+                        </div>
+
+                      </div>
+                    
+
+                      <div class="accordion-group" id="item-task-516d736e5aa0b31c10000001">
+                        
+                        <div class="accordion-heading">
+                          <div class="check-line">
+                            <table><tbody><tr>
+                              <td width="3%">
+                                 
+                                 <button type="button" value="finish" class="check-task btn btn-danger btn-mini" data-value="516d736e5aa0b31c10000001"><i class="icon-thumbs-down icon-white"></i></button>
+                                  
+                            
+                              </td>
+                              <td style="padding-left:6px;">
+                             <a data-toggle="collapse" style="display:block" data-parent="#accordion514cb0f426dbbe1409000001" id="title-task-516d736e5aa0b31c10000001" href="#collapse516d736e5aa0b31c10000001">#hello</a>
+                              </td>
+                            </tr></tbody></table>
+                          </div>                                       
+                        </div>
+                        
+                          <div id="collapse516d736e5aa0b31c10000001" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                              
+                              <p id="description-task-516d736e5aa0b31c10000001">#world etiquetas</p>
+                              
+                             <div class="buttons-action-task text-right">
+                               
+                                <button type="button" data-value="516d736e5aa0b31c10000001" class="btn-delete-task btn btn-danger btn-mini">Delete</button>
+                                <button type="button" class="btn btn-mini btn-edit-task" data-value="516d736e5aa0b31c10000001">Edit</button>
+                              </div>
+
+                              <hr>
+                              <small style="display:block">update: <abbr class="timeago" title="2013-04-16T21:19:28.000Z">un dia atrás</abbr></small>
+                              <small>create: <abbr class="timeago" title="2013-04-16T15:51:10.352Z">2 dias atrás</abbr></small>
+                            </div>
+                          </div>
+
+                      </div>
+                    
+
+                      <div class="accordion-group" id="item-task-5154b1cc9a236db81c000001">
+                        
+                        <div class="accordion-heading">
+                          <div class="check-line">
+                            <table><tbody><tr>
+                              <td width="3%">
+                                 
+                                 <button type="button" value="finish" class="check-task btn btn-danger btn-mini" data-value="5154b1cc9a236db81c000001"><i class="icon-thumbs-down icon-white"></i></button>
+                                  
+                            
+                              </td>
+                              <td style="padding-left:6px;">
+                             <a data-toggle="collapse" style="display:block" data-parent="#accordion514cb0f426dbbe1409000001" id="title-task-5154b1cc9a236db81c000001" href="#collapse5154b1cc9a236db81c000001">Hacer algo</a>
+                              </td>
+                            </tr></tbody></table>
+                          </div>                                       
+                        </div>
+                        
+                        <div id="collapse5154b1cc9a236db81c000001" class="accordion-body collapse">
+                          <div class="accordion-inner">
+                            
+                            <p id="description-task-5154b1cc9a236db81c000001">Node</p>
+                            
+                           <div class="buttons-action-task text-right">
+                             
+                              <button type="button" data-value="5154b1cc9a236db81c000001" class="btn-delete-task btn btn-danger btn-mini">Delete</button>
+                              <button type="button" class="btn btn-mini btn-edit-task" data-value="5154b1cc9a236db81c000001">Edit</button>
+                            </div>
+
+                            <hr>
+                            <small style="display:block">update: <abbr class="timeago" title="2013-04-16T21:17:51.000Z">un dia atrás</abbr></small>
+                            <small>create: <abbr class="timeago" title="2013-03-28T21:10:36.844Z">21 dias atrás</abbr></small>
+                          </div>
+                        </div>
+
+                      </div>
+                    
+                  </div>
+
+                                    <div class="span3 accordion" id="accordion514cb0f426dbbe1409000001">
+
+
+                      <div class="accordion-group" id="item-task-516dc0b15b1c63fc13000002">
+                        
+                        <div class="accordion-heading">
+                          <div class="check-line">
+                            <table><tbody><tr>
+                              <td width="3%">
+                                 
+                                 <button type="button" value="peding" class="check-task btn btn-success btn-mini" data-value="516dc0b15b1c63fc13000002"><i class="icon-thumbs-up icon-white"></i></button>
+                                 
+                            
+                              </td>
+                              <td style="padding-left:6px;">
+                             <a data-toggle="collapse" style="display:block" data-parent="#accordion514cb0f426dbbe1409000001" id="title-task-516dc0b15b1c63fc13000002" href="#collapse516dc0b15b1c63fc13000002" class="cross-out">Botones</a>
+                              </td>
+                            </tr></tbody></table>
+                          </div>                                       
+                        </div>
+                        
+                        <div id="collapse516dc0b15b1c63fc13000002" class="accordion-body collapse">
+                          <div class="accordion-inner">
+                            
+                            <p id="description-task-516dc0b15b1c63fc13000002">#colores <a href="http://google.com">http://google.com</a></p>
+                            
+                           <div class="buttons-action-task text-right">
+                             
+                              <button type="button" data-value="516dc0b15b1c63fc13000002" class="btn-delete-task btn btn-danger btn-mini">Delete</button>
+                              <button type="button" class="btn btn-mini btn-edit-task" data-value="516dc0b15b1c63fc13000002">Edit</button>
+                            </div>
+
+                            <hr>
+                            <small style="display:block">update: <abbr class="timeago" title="2013-04-17T14:46:12.000Z">aprox 22 horas atrás</abbr>
+                          </small>
+                            <small>create: <abbr class="timeago" title="2013-04-16T21:20:49.497Z">un dia atrás</abbr></small>
+                          </div>
+                        </div>
+
+                      </div>
+                    
+
+                      <div class="accordion-group" id="item-task-516d736e5aa0b31c10000001">
+                        
+                        <div class="accordion-heading">
+                          <div class="check-line">
+                            <table><tbody><tr>
+                              <td width="3%">
+                                 
+                                 <button type="button" value="finish" class="check-task btn btn-danger btn-mini" data-value="516d736e5aa0b31c10000001"><i class="icon-thumbs-down icon-white"></i></button>
+                                  
+                            
+                              </td>
+                              <td style="padding-left:6px;">
+                             <a data-toggle="collapse" style="display:block" data-parent="#accordion514cb0f426dbbe1409000001" id="title-task-516d736e5aa0b31c10000001" href="#collapse516d736e5aa0b31c10000001">#hello</a>
+                              </td>
+                            </tr></tbody></table>
+                          </div>                                       
+                        </div>
+                        
+                          <div id="collapse516d736e5aa0b31c10000001" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                              
+                              <p id="description-task-516d736e5aa0b31c10000001">#world etiquetas</p>
+                              
+                             <div class="buttons-action-task text-right">
+                               
+                                <button type="button" data-value="516d736e5aa0b31c10000001" class="btn-delete-task btn btn-danger btn-mini">Delete</button>
+                                <button type="button" class="btn btn-mini btn-edit-task" data-value="516d736e5aa0b31c10000001">Edit</button>
+                              </div>
+
+                              <hr>
+                              <small style="display:block">update: <abbr class="timeago" title="2013-04-16T21:19:28.000Z">un dia atrás</abbr></small>
+                              <small>create: <abbr class="timeago" title="2013-04-16T15:51:10.352Z">2 dias atrás</abbr></small>
+                            </div>
+                          </div>
+
+                      </div>
+                    
+
+                      <div class="accordion-group" id="item-task-5154b1cc9a236db81c000001">
+                        
+                        <div class="accordion-heading">
+                          <div class="check-line">
+                            <table><tbody><tr>
+                              <td width="3%">
+                                 
+                                 <button type="button" value="finish" class="check-task btn btn-danger btn-mini" data-value="5154b1cc9a236db81c000001"><i class="icon-thumbs-down icon-white"></i></button>
+                                  
+                            
+                              </td>
+                              <td style="padding-left:6px;">
+                             <a data-toggle="collapse" style="display:block" data-parent="#accordion514cb0f426dbbe1409000001" id="title-task-5154b1cc9a236db81c000001" href="#collapse5154b1cc9a236db81c000001">Hacer algo</a>
+                              </td>
+                            </tr></tbody></table>
+                          </div>                                       
+                        </div>
+                        
+                        <div id="collapse5154b1cc9a236db81c000001" class="accordion-body collapse">
+                          <div class="accordion-inner">
+                            
+                            <p id="description-task-5154b1cc9a236db81c000001">Node</p>
+                            
+                           <div class="buttons-action-task text-right">
+                             
+                              <button type="button" data-value="5154b1cc9a236db81c000001" class="btn-delete-task btn btn-danger btn-mini">Delete</button>
+                              <button type="button" class="btn btn-mini btn-edit-task" data-value="5154b1cc9a236db81c000001">Edit</button>
+                            </div>
+
+                            <hr>
+                            <small style="display:block">update: <abbr class="timeago" title="2013-04-16T21:17:51.000Z">un dia atrás</abbr></small>
+                            <small>create: <abbr class="timeago" title="2013-03-28T21:10:36.844Z">21 dias atrás</abbr></small>
+                          </div>
+                        </div>
+
+                      </div>
+                    
+                  </div>
+
+
+
+                </div>
+
+
+              </div>
+            </li>
+</ul>
+
+            </section>
+        </div>
+    </div></div>
+
+
+
+    <!-- Footer
+    ================================================== -->
+    <!--footer class="footer">
+      <div class="container">
+        <p> </p>
+        <ul class="footer-links">
+          <li></li>
+          <li class="muted"></li>
+        </ul>
+      </div>
+    </footer-->
+    <script data-main="js/main" src="js/libs/require/require.js"></script>
+
+    <div class="modal-backdrop in hide"></div>
+
+</body></html>  

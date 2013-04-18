@@ -6,8 +6,9 @@ define([
     'models/tasklist',
     'text!templates/tasklist.html',
     'views/taskView',
+    'text!templates/task.html',
     'views/modal'
-    ], function($,_,Backbone,TasklistCollection,TasklistModel,tasklistTemplate,TaskView,modal_form) {
+    ], function($,_,Backbone,TasklistCollection,TasklistModel,tasklistTemplate,TaskView,taskTemplate,modal_form) {
 
         var taskView = new TaskView();
 
@@ -40,13 +41,40 @@ define([
                       that.create();                        
                 });
 
+
+                $('.mondal-list-priority button').on('click',function(){
+
+                    $('.mondal-list-priority button').removeClass('active');
+                    
+                    $(this).addClass('active');
+
+                    $('#modal_priority').val($(this).attr('value'));
+
+                    return false; //Fix no action;
+
+                });
+
+
                 var tasklistAll = new TasklistCollection();             
                     tasklistAll.fetch({
 
                         //data: {page:1},
                         success: function(tasklist,data) {
 
-                            $(that.el).html(_.template(tasklistTemplate, {list: data, _:_}));
+                            _.each(data,function(val){
+
+                                $(that.el).append(_.template(tasklistTemplate,{tasklist: val, _:_}));
+
+                                _.each(val.tasks,function(task){
+
+                                    $('#accordion_'+ val._id + '_' + task.priority).append( _.template(taskTemplate,{task: task, _:_}) );
+
+                                });
+
+                            });
+
+
+                            //$(that.el).html(_.template(tasklistTemplate, {list: data, _:_}));
                             
                             $("abbr.timeago").timeago();
 
@@ -109,11 +137,11 @@ define([
 
                           modal_form.id_form.val(tasklist.toJSON()._id);
 
-                          $('#list-tasklist').prepend(_.template(tasklistTemplate, {list: [tasklist.toJSON()], _:_}));
+                          $('#list-tasklist').prepend(_.template(tasklistTemplate, {tasklist: tasklist.toJSON(), _:_}));
 
                         }else{
 
-                          $('#item-tasklist-' + tasklist.toJSON()._id ).replaceWith(_.template(tasklistTemplate, {list: [tasklist.toJSON()] , _:_}));
+                          $('#item-tasklist-' + tasklist.toJSON()._id ).replaceWith(_.template(tasklistTemplate, {tasklist: tasklist.toJSON() , _:_}));
 
                         }
 
@@ -140,7 +168,7 @@ define([
                     modal_form.realy();
 
 
-                },1000); 
+                },200); 
 
             },
 

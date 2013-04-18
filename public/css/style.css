@@ -46,6 +46,42 @@ section {
 }
 
 
+.mondal-list-priority .active{
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.block_priority_3{
+  border:2px solid rgba(189, 54, 47, 0.5);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+
+}
+
+.block_priority_2{
+  border:2px solid rgba(248, 148, 6, 0.5);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.block_priority_1{
+  border:2px solid rgba(47, 150, 180, 0.5);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.block_priority_0{
+  border:2px solid rgba(81, 163, 81, 0.5);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+
+
 ::-webkit-scrollbar {
     width: 10px;
 }

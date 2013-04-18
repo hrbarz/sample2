@@ -1,4 +1,4 @@
-<div class="accordion-group" id="item-task-<%- task._id %>"  >
+<div class="accordion-group" id="item-task-<%- task._id %>" style="border:0"  >
                     
                     <div class="accordion-heading">
                       <div class="check-line">
@@ -14,7 +14,7 @@
                           </td>
                           <td style="padding-left:6px;">
                       
-                         <a data-toggle="collapse"  style="display:block" id="title-task-<%- task._id %>" data-parent="#accordion<%- task.tasklist %>" href="#collapse<%- task._id %>" <% if(task.status == 'finish'){ %>class="cross-out"<% } %>><%- task.name %></a>
+                         <a data-toggle="collapse"  style="display:block" id="title-task-<%- task._id %>" data-parent="#accordion<%- task.tasklist %>_<%- task.priority %>" href="#collapse<%- task._id %>" <% if(task.status == 'finish'){ %>class="cross-out"<% } %>><%- task.name %></a>
                          </td>
                         </tr></table>
 
@@ -24,7 +24,7 @@
 
                     </div>
                     
-                    <div id="collapse<%- task._id %>" class="accordion-body collapse collapse">
+                    <div id="collapse<%- task._id %>" class="accordion-body collapse">
                       <div class="accordion-inner">
                         
                         <p id="description-task-<%- task._id %>" ><%- task.description %></p>

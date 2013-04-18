@@ -40,7 +40,8 @@ module.exports = function(req,res){
 				name: req.params.name, 
 				description: req.params.description,
 				tasklist: req.params.tasklist,
-				tags: req.params.tags
+				tags: req.params.tags,
+				priority: req.params.priority,
 			});
 
 						
