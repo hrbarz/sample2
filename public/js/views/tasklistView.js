@@ -56,35 +56,48 @@ define([
 
 
                 var tasklistAll = new TasklistCollection();             
+                    
                     tasklistAll.fetch({
-
                         //data: {page:1},
                         success: function(tasklist,data) {
-
-                            _.each(data,function(val){
-
-                                $(that.el).append(_.template(tasklistTemplate,{tasklist: val, _:_}));
-
-                                _.each(val.tasks,function(task){
-
-                                    $('#accordion_'+ val._id + '_' + task.priority).append( _.template(taskTemplate,{task: task, _:_}) );
-
-                                });
-
-                            });
-
-
-                            //$(that.el).html(_.template(tasklistTemplate, {list: data, _:_}));
                             
+                             _.each(data,function(val){
+                             
+                                that.set_data_tasklist(val); 
+                             
+                             });
+
                             $("abbr.timeago").timeago();
 
-                            $(".accordion-inner p").url2Link();                       
+                            $(".accordion-inner p").url2Link(); 
 
                         }
 
                     });
 
             },
+
+            set_data_tasklist: function(val,element){
+
+                if(element == null){
+                  
+                  $(this.el).append(_.template(tasklistTemplate,{tasklist: val, _:_}));
+                
+                }else{
+
+                  $(element).replaceWith(_.template(tasklistTemplate,{tasklist: val, _:_}));
+
+                }
+
+                _.each(val.tasks,function(task){
+
+                    $('#accordion_'+ val._id + '_' + task.priority).append( _.template(taskTemplate,{task: task, _:_}) );
+
+                });
+                
+            },
+
+
 
             get_id: function(e){
                  return  $(e.target).attr('data-value');
@@ -137,11 +150,13 @@ define([
 
                           modal_form.id_form.val(tasklist.toJSON()._id);
 
-                          $('#list-tasklist').prepend(_.template(tasklistTemplate, {tasklist: tasklist.toJSON(), _:_}));
+                          $(that.el).prepend(_.template(tasklistTemplate, {tasklist: tasklist.toJSON(), _:_}));
 
                         }else{
 
-                          $('#item-tasklist-' + tasklist.toJSON()._id ).replaceWith(_.template(tasklistTemplate, {tasklist: tasklist.toJSON() , _:_}));
+                          that.set_data_tasklist(tasklist.toJSON(),'#item-tasklist-' + tasklist.toJSON()._id);
+
+                          //$('#item-tasklist-' + tasklist.toJSON()._id ).replaceWith(_.template(tasklistTemplate, {tasklist: tasklist.toJSON() , _:_}));
 
                         }
 

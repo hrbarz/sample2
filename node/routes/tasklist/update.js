@@ -17,7 +17,7 @@ module.exports = function(req,res){
         	.select('_id name description tasks')
 			.populate({
 	            path    : 'tasks',
-	            select  : '_id tasklist name description status',
+                select  : '_id tasklist name description status priority created_at updated_at',
 	            options : { sort: [['created_at', -1 ]] }
 	         })
 			.exec(function(err, tasklist){
