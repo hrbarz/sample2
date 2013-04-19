@@ -1,8 +1,8 @@
 
             <li class="span12" id="item-tasklist-<%- tasklist._id %>">
               
-              <div style="padding:0 0 5px 0;"><strong><%- tasklist.name %></strong>
-                <div class="btn-group" style="float:right">
+              <div style="padding:0 0 5px 0;">
+                <div class="btn-group" style="">
                   <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
                     <span class="caret"></span>
                   </button>
@@ -10,6 +10,14 @@
                     <li><a href="#" class="btn-edit-tasklist" data-value="<%- tasklist._id %>">Edit</a></li>
                     <li><a href="#" class="btn-delete-tasklist" data-value="<%- tasklist._id %>">Delete</a></li>
                   </ul>
+                </div>
+                <strong><%- tasklist.name %></strong>
+
+                <div style="margin-left:10px; display:inline">
+                  <span class="label label-important">2</span>
+                  <span class="label label-warning">2</span>
+                  <span class="label label-info">2</span>
+                  <span class="label label-success">2</span>
                 </div>
               </div>
 
