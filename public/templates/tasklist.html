@@ -11,17 +11,23 @@
                     <li><a href="#" class="btn-delete-tasklist" data-value="<%- tasklist._id %>">Delete</a></li>
                   </ul>
                 </div>
-                <strong><%- tasklist.name %></strong>
 
-                <div style="margin-left:10px; display:inline">
-                  <span class="label label-important">2</span>
-                  <span class="label label-warning">2</span>
-                  <span class="label label-info">2</span>
-                  <span class="label label-success">2</span>
+                <div data-target="#collapse_<%- tasklist._id %>" data-toggle="collapse" style="display:inline; cursor:pointer">
+                  
+                  <strong><%- tasklist.name %></strong>
+
+                  <div style="margin-left:10px; display:inline" class="count_priority_<%- tasklist._id %>">
+                    <span class="label label-important count_3">0</span>
+                    <span class="label label-warning count_2">0</span>
+                    <span class="label label-info count_1">0</span>
+                    <span class="label label-success count_0">0</span>
+                  </div>
                 </div>
+
+
               </div>
 
-              <div style="overflow:auto; border: 1px solid #ddd; padding: 5px;">
+              <div  id="collapse_<%- tasklist._id %>" style="overflow:auto; border: 1px solid #ddd; padding: 5px;" class="accordion-body collapse ">
 
                 <button class="btn-new-task btn btn-small btn-block" data-value="<%- tasklist._id %>" style="margin-bottom:5px" type="button">new</button>
 

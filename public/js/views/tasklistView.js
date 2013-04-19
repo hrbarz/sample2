@@ -77,21 +77,40 @@ define([
 
             },
 
-            set_data_tasklist: function(val,element){
+            reload_count_priority: function(id_tasklist){
+
+
+                var tasklistCol = new TasklistCollection();             
+
+                for (var i = 0; i < 4; i++) {
+
+                    tasklistCol.get_count_priority(id_tasklist,i,function(data){
+
+                        $('.count_priority_' + id_tasklist + ' .count_'+ data.name ).html(data.count);
+                    
+                    });
+
+                };
+
+            },
+
+            set_data_tasklist: function(data,element){
 
                 if(element == null){
                   
-                  $(this.el).append(_.template(tasklistTemplate,{tasklist: val, _:_}));
+                  $(this.el).append(_.template(tasklistTemplate,{tasklist: data, _:_}));
                 
                 }else{
 
-                  $(element).replaceWith(_.template(tasklistTemplate,{tasklist: val, _:_}));
+                  $(element).replaceWith(_.template(tasklistTemplate,{tasklist: data, _:_}));
 
                 }
 
-                _.each(val.tasks,function(task){
+                this.reload_count_priority(data._id);                
 
-                    $('#accordion_'+ val._id + '_' + task.priority).append( _.template(taskTemplate,{task: task, _:_}) );
+                _.each(data.tasks,function(task){
+
+                    $('#accordion_'+ data._id + '_' + task.priority).append( _.template(taskTemplate,{task: task, _:_}) );
 
                 });
                 

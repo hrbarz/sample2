@@ -9,8 +9,22 @@ define([
         
         model: TasklistModel,
         
-        url: '/tasklist'
-  });
+        url: '/tasklist',
+
+        get_count_priority: function(id,priority,callback){
+
+            $.ajax({
+
+                url: '/tasklist/'+ id + '/count/' + priority,
+                success: function(data){
+
+                    callback(data);
+
+                }
+
+            });
+        }
+    });
 
   return Tasklist;
 });

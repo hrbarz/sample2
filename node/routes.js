@@ -6,22 +6,28 @@ module.exports = function(server){
     server.post(
         '/tasklist', 
             require('./routes/tasklist/new'));
-    
-    server.get(
-    	'/tasklist', 
-    		require('./routes/tasklist/list')); 
-    	
-    server.get(
-    	'/tasklist/:id',
-    		require('./routes/tasklist/id'));    
 
+    server.get(
+        '/tasklist/:id',
+            require('./routes/tasklist/id'));    
+
+    server.put(
+        '/tasklist/:id',
+            require('./routes/tasklist/update'));
+    	
     server.del(
     	'/tasklist/:id', 
     		require('./routes/tasklist/delete'));
 
-	server.put(
-    	'/tasklist/:id',
-    		require('./routes/tasklist/update'));
+
+
+    server.get(
+        '/tasklist', 
+            require('./routes/tasklist/list')); 
+
+    server.get(
+        '/tasklist/:id/count/:priority', 
+            require('./routes/tasklist/count_priority')); 
 
 
 
