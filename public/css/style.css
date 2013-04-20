@@ -30,6 +30,12 @@ section {
 	height: 200px;
 	background: no-repeat center url('../img/ajax-loader.gif');
 }
+
+.loading_block{
+  height: 50px;
+  background: no-repeat center url('../img/ajax-loader_2.gif');
+}
+
 .cross-out{
 	text-decoration: line-through;
 }
@@ -79,6 +85,12 @@ section {
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
+/*
+.label {
+
+  line-height: 20px;
+  font-size: 19.844px;
+}*/
 
 
 /*

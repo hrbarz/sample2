@@ -3,12 +3,13 @@ define([
     'underscore',
     'backbone',
     'collections/tasklist',
+    'collections/task',
     'models/tasklist',
     'text!templates/tasklist.html',
     'views/taskView',
     'text!templates/task.html',
     'views/modal'
-    ], function($,_,Backbone,TasklistCollection,TasklistModel,tasklistTemplate,TaskView,taskTemplate,modal_form) {
+    ], function($,_,Backbone,TasklistCollection,TaskCollection,TasklistModel,tasklistTemplate,TaskView,taskTemplate,modal_form) {
 
         var taskView = new TaskView();
 
@@ -55,40 +56,43 @@ define([
                 });
 
 
-                var tasklistAll = new TasklistCollection();             
+               $(that.el).addClass('loading_block');
+
+               var tasklistAll = new TasklistCollection();             
                     
-                    tasklistAll.fetch({
-                        //data: {page:1},
-                        success: function(tasklist,data) {
-                            
-                             _.each(data,function(val){
-                             
-                                that.set_data_tasklist(val); 
-                             
-                             });
+               tasklistAll.fetch({
+                  //data: {page:1},
+                  success: function(tasklist,data) {
+                      
+                     _.each(data,function(val){
+                       
+                        that.set_data_tasklist(val); 
+                       
+                     });
 
-                            $("abbr.timeago").timeago();
+                     $(that.el).removeClass('loading_block');
 
-                            $(".accordion-inner p").url2Link(); 
+                     $("abbr.timeago").timeago();
 
-                        }
+                     $(".accordion-inner p").url2Link(); 
 
-                    });
+                  }
+
+              });
 
             },
 
             reload_count_priority: function(id_tasklist){
 
+               var taskCollection = new TaskCollection();             
 
-                var tasklistCol = new TasklistCollection();             
+               for (var i = 0; i < 4; i++) {
 
-                for (var i = 0; i < 4; i++) {
-
-                    tasklistCol.get_count_priority(id_tasklist,i,function(data){
+                     taskCollection.get_count_priority(id_tasklist,i,function(data){
 
                         $('.count_priority_' + id_tasklist + ' .count_'+ data.name ).html(data.count);
                     
-                    });
+                     });
 
                 };
 
