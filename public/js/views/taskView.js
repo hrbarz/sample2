@@ -11,9 +11,7 @@ define([
         	var Task = Backbone.View.extend({
 
         		get_id		: function(e){
-				
-					return  $(e.target).attr('data-value');
-	            
+					return  $(e.target).attr('data-value');	            
 	            },
 
 	            el_tasklist	: function(idparent){
@@ -24,13 +22,36 @@ define([
 	            	return '#item-task-' + id;
 	            },
 
-	            create 		: function(e){
+	            set_data_list_task: function(data){
 
-					var idparent = this.get_id(e);
+	                _.each(data,function(task){
 
-					
+	                    $('#accordion_'+ task.tasklist + '_' + task.priority).append( _.template(taskTemplate,{task: task, _:_}) );
 
-                	modal_form.show({action_save:this.save_data,task:true});
+	                });
+	                
+	            },
+
+	            reload_count_priority: function(id_tasklist){
+
+	               var taskCollection = new TaskCollection();             
+
+	               for (var i = 0; i < 4; i++) {
+
+	                     taskCollection.get_count_priority(id_tasklist,i,function(data){
+
+	                        $('.count_priority_' + id_tasklist + ' .count_'+ data.name ).html(data.count);
+	                    
+	                     });
+
+	                };
+	            },
+
+	            create: function(e){
+
+					var idparent = this.get_id(e);					
+
+                	modal_form.show({self:this,task:true});
 
 					modal_form.title.html('Create Task');
 
@@ -40,11 +61,7 @@ define([
 							priority: 0
 						});
 
-
-
 					modal_form.realy();
-
-
 				},
 
 				save_data: function(){
@@ -75,12 +92,12 @@ define([
 					task.save(data, {
 				       
 				        success: function (task) {
-
+                          
 				            if(modal_form.id_form.val() == ''){
-							
-								modal_form.id_form.val(task.toJSON()._id);
+								
+					        	that.reload_count_priority(task.toJSON().tasklist);
 
-								//console.log('#accordion' + data.tasklist + '_' + task.toJSON().priority);
+								modal_form.id_form.val(task.toJSON()._id);
 								   
 								$('#accordion_' + data.tasklist + '_' + task.toJSON().priority).prepend(_.template(taskTemplate, {task: task.toJSON(), _:_}));
 							
@@ -99,14 +116,11 @@ define([
 									$('#accordion_' + data.tasklist + '_' + task.toJSON().priority).prepend(_.template(taskTemplate, {task: task.toJSON(), _:_}));
 
 
-								}
-
-								
+								}								
 
 							}
 
                             modal_form.hide_alert();
-
 
                             $("abbr.timeago").timeago();
                             $(".accordion-inner p").url2Link();                       
@@ -118,11 +132,10 @@ define([
 				},
 
 				edit: function(e){
-
 	            
 	                var id = this.get_id(e);
 
-	                modal_form.show({action_save:this.save_data,task:true});
+	                modal_form.show({self:this,task:true});
 
 	                modal_form.title.html('Edit Task');
 
@@ -151,6 +164,8 @@ define([
 
         		check : function(e){
 
+        			that = this;
+
         			var id = this.get_id(e);
         			var btn_check = $(e.target);
 
@@ -168,11 +183,11 @@ define([
 
 	                if(title_task !== undefined){
 
-
-
 	                    if( btn_check.attr('value') == 'finish' ){
 	                        
-	                        this._check(id,function(){
+	                        this._check(id,function(task){
+
+	                        	that.reload_count_priority(task.tasklist);
 	                        	
 	                        	title_task.addClass('cross-out');
 	                        	
@@ -188,7 +203,9 @@ define([
 	                    
 	                    }else{
 	                        
-	                        this._undo_check(id,function(){
+	                        this._undo_check(id,function(task){
+
+	                        	that.reload_count_priority(task.tasklist);	                        	
 
 	                        	title_task.removeClass('cross-out');
 
@@ -213,8 +230,9 @@ define([
 					task.save({status:'finish'}, {
 				       
 				        success: function (task) {
-				            trigger();
+				            trigger(task.toJSON());
 				        }
+
 				    });         
 
 	            },
@@ -226,8 +244,9 @@ define([
 					task.save({status:'pending'}, {
 				       
 				        success: function () {
-				            trigger();
+				            trigger(task.toJSON());
 				        }
+
 				    });  
 	            },
 

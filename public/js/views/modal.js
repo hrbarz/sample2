@@ -1,5 +1,14 @@
-define(function() {
-  return {
+define([
+  'jquery',
+  'text!templates/modal_form.html',
+  'views/taskView',
+  'views/tasklistView'
+],function($,modalFormTemplate,TaskView,TasklistView) {
+
+    //var taskView = new TaskView();
+    //var tasklistView = new TasklistView();
+
+    return {
 
       reset: function(){
 
@@ -11,19 +20,30 @@ define(function() {
           $('#modal_idparent_form').val('');
 
           $('.mondal-list-priority button').removeClass('active');
+          
           $('.mondal-list-priority button').each(function(){
 
-              if($(this).attr('value') == 0){
+            if($(this).attr('value') == 0){
                 $(this).addClass('active');
-              }
+            }
 
           });
 
       },
 
+      create_modal: function(){
+
+            if($('#form-tasklist').html() == undefined){
+
+                $('body').append(modalFormTemplate);
+
+            }
+
+      },
+
       show: function(params){
 
-        
+        this.create_modal();        
 
         if(params.task == true){
           
@@ -42,8 +62,29 @@ define(function() {
 
         $('.save-changes-modal').bind('click',function(){
 
-            if(params.action_save !== undefined) params.action_save();
+            if(params.task == true){
+                
+                params.self.save_data();
 
+            }else{
+
+                params.self.save_data();
+
+            }
+
+        });
+
+        $('.mondal-list-priority button').unbind();
+
+        $('.mondal-list-priority button').bind('click',function(){
+
+            $('.mondal-list-priority button').removeClass('active');
+
+            $(this).addClass('active');
+
+            $('#modal_priority').val($(this).attr('value'));
+
+            return false;
         });
 
         $('.modal').removeClass('hide');
@@ -56,7 +97,7 @@ define(function() {
 
         document.getElementById('form_modal').reset();
 
-        this.title = $('#myModalLabel');
+        this.title = $('#title_modal');
         this.action_form = $('#form_modal #action_form');
         this.id_form = $('#modal_id_form');
 

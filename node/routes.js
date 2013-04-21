@@ -25,10 +25,6 @@ module.exports = function(server){
         '/tasklist', 
             require('./routes/tasklist/list')); 
 
-    server.get(
-        '/tasklist/:id/count/:priority', 
-            require('./routes/tasklist/count_priority')); 
-
 
 
     
@@ -41,13 +37,18 @@ module.exports = function(server){
         '/task/:id',
             require('./routes/task/id'));
 
+    server.put(
+        '/task/:id',
+            require('./routes/task/update'));
+
     server.del(
     	'/task/:id',
     		require('./routes/task/delete'));
 
-	server.put(
-    	'/task/:id',
-    		require('./routes/task/update'));
+
+    server.get(
+        '/task/:id/count/:priority', 
+            require('./routes/task/count_priority')); 
 
 
 
@@ -55,6 +56,7 @@ module.exports = function(server){
     server.get(
         '/tag/:name',
             require('./routes/tag/list'));
+
 
     	
     /*server.get(

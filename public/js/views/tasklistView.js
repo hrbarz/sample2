@@ -82,22 +82,7 @@ define([
 
             },
 
-            reload_count_priority: function(id_tasklist){
-
-               var taskCollection = new TaskCollection();             
-
-               for (var i = 0; i < 4; i++) {
-
-                     taskCollection.get_count_priority(id_tasklist,i,function(data){
-
-                        $('.count_priority_' + id_tasklist + ' .count_'+ data.name ).html(data.count);
-                    
-                     });
-
-                };
-
-            },
-
+            
             set_data_tasklist: function(data,element){
 
                 if(element == null){
@@ -110,13 +95,9 @@ define([
 
                 }
 
-                this.reload_count_priority(data._id);                
+                taskView.reload_count_priority(data._id);
 
-                _.each(data.tasks,function(task){
-
-                    $('#accordion_'+ data._id + '_' + task.priority).append( _.template(taskTemplate,{task: task, _:_}) );
-
-                });
+                taskView.set_data_list_task(data.tasks);                
                 
             },
 
@@ -139,9 +120,7 @@ define([
                             $('#item-tasklist-' + id).remove();
                         }
                     });
-                 
-                    
-                 
+                                                    
                 }
 
             },
@@ -179,8 +158,6 @@ define([
 
                           that.set_data_tasklist(tasklist.toJSON(),'#item-tasklist-' + tasklist.toJSON()._id);
 
-                          //$('#item-tasklist-' + tasklist.toJSON()._id ).replaceWith(_.template(tasklistTemplate, {tasklist: tasklist.toJSON() , _:_}));
-
                         }
 
                         modal_form.hide_alert(); 
@@ -205,7 +182,6 @@ define([
 
                     modal_form.realy();
 
-
                 },200); 
 
             },
@@ -222,23 +198,21 @@ define([
 
                 var tasklist = new TasklistModel({id: id});
 
-                    tasklist.fetch({
-                   
-                        success: function (tasklist,data) {
+                tasklist.fetch({
+                
+                     success: function (tasklist,data) {
 
-                            modal_form.set_data({
-                                id          : data._id,
-                                name        : data.name,
-                                description : data.description,
-                                action      : 'tasklist'
-                            });
-                                                
-                            modal_form.realy();
+                         modal_form.set_data({
+                             id          : data._id,
+                             name        : data.name,
+                             description : data.description,
+                             action      : 'tasklist'
+                         });
+                                             
+                         modal_form.realy();
 
-                        }
-                    })
-
-
+                     }
+                 });
             },            
 
             check_task: function(e){ taskView.check(e) },
