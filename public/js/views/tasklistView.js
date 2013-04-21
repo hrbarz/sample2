@@ -123,6 +123,8 @@ define([
                                                     
                 }
 
+                return false;
+
             },
 
             save_data: function(){
@@ -213,6 +215,8 @@ define([
 
                      }
                  });
+
+               return false;
             },            
 
             check_task: function(e){ taskView.check(e) },

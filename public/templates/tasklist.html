@@ -2,7 +2,10 @@
             <li class="span12 well" id="item-tasklist-<%- tasklist._id %>" style="padding: 8px">
               
               <div style="padding:0 0 5px 0;">
-                <div class="btn-group" style="">
+                
+                <div data-target="#collapse_<%- tasklist._id %>" data-toggle="collapse" style=" cursor:pointer">
+                  
+                  <div class="btn-group" style="">
                   <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
                     <span class="caret"></span>
                   </button>
@@ -12,8 +15,6 @@
                   </ul>
                 </div>
 
-                <div data-target="#collapse_<%- tasklist._id %>" data-toggle="collapse" style="display:inline; cursor:pointer">
-                  
                   <strong><%- tasklist.name %></strong>
 
                   <div style="margin-left:10px; display:inline" class="count_priority_<%- tasklist._id %>">
