@@ -129,6 +129,8 @@ define([
 
             save_data: function(){
 
+                that = this;
+
                 modal_form.show_alert();
 
                 var data = modal_form.get_data();
@@ -154,6 +156,8 @@ define([
 
                           modal_form.id_form.val(tasklist.toJSON()._id);
 
+
+
                           $(that.el).prepend(_.template(tasklistTemplate, {tasklist: tasklist.toJSON(), _:_}));
 
                         }else{
@@ -172,7 +176,7 @@ define([
 
             create: function(){
 
-                modal_form.show({action_save:this.save_data});
+                modal_form.show({self:this});
 
                 modal_form.title.html('Create Task List');
                 
@@ -194,7 +198,7 @@ define([
             
                 var id = this.get_id(e);
 
-                modal_form.show({action_save:this.save_data});
+                modal_form.show({self:this});
 
                 modal_form.title.html('Edit Task List');
 

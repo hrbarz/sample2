@@ -62,15 +62,7 @@ define([
 
         $('.save-changes-modal').bind('click',function(){
 
-            if(params.task == true){
-                
                 params.self.save_data();
-
-            }else{
-
-                params.self.save_data();
-
-            }
 
         });
 
