@@ -1,5 +1,5 @@
 /*Load Config*/
-var config 		= require('./config');
+var config 		= require('./ohmytask_config');
 
 	global.config = config;
 
@@ -12,6 +12,6 @@ var db = require('mongoose');
 	//db.connection.close();
 
 
-var server = require('./start_express')();
+var server = require('./ohmytask_start')();
 
 	require('./routes')(server);  
