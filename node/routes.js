@@ -54,6 +54,10 @@ module.exports = function(server){
         '/task/:id/count/:priority', 
             require('./routes/task/count_priority')); 
 
+    server.get(
+        '/task/:id/count', 
+            require('./routes/task/count_priority_all')); 
+
 
 
 
