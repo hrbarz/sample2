@@ -11,21 +11,22 @@ define([
         
             url: '/task',
 
-            get_count_priority: function(id,priority,callback){
+            get_count_priority: function(id,callback){
 
             	that = this;
 
 	            $.ajax({
 
-	                url: that.url + '/'+ id + '/count/' + priority,
-	                success: function(data){
+	                url: that.url + '/count_priority/'+ id ,
+	                
+                  success: function(data){
 
 	                    callback(data);
 
 	                }
 
 	            });
-	        }
+	          }
         });
 
     return Task;

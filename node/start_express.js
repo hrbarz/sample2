@@ -1,33 +1,29 @@
 module.exports = function(){  
 
-	var express 	= require('express');
-	var MongoStore 	= require('connect-mongo')(express);
+	var express 	= require('express'),
 
-	var server 		= express();
+		server 		= express(),
 
-	// simple logger
-	/*app.use(function(req, res, next){
-	  console.log('%s %s', req.method, req.url);
-	  next();
-	});*/
+		MongoStore 	= require('connect-mongo')(express);
+
 
 	server.use(express.cookieParser());
 
 	server.use(express.session({
-		secret: 'secretblablabla',
+		secret: 'key+secret+now',
 		store: new MongoStore({
 			db: 'sample2'
 		}),
 		maxAge: 1000*60*5
 	}));
 
-
-
 	server.use(express.bodyParser());
 
 	server.use(express.static('../public'));
 
-	server.get('/test/:algo',function(req, res){
+
+
+	/*server.get('/test/:algo',function(req, res){
 
 		req.session.algo = req.params.algo;
 
@@ -39,15 +35,12 @@ module.exports = function(){
 
 		res.send(req.session.algo)
 
-	}); 
+	});*/
 
 
-	// respond
-	///server.use(function(req, res, next){
-	//  res.send('Hello World');
-	//});
-
-	server.listen(3000);
+	server.listen(3000,function(data) {
+		console.log('%s listening', server.name);		
+	});
 
 	return server;
 }

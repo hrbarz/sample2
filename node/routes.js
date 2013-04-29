@@ -1,81 +1,61 @@
 module.exports = function(server){  
 
+    var task =  require('./routes/task');
+
+    var tasklist =  require('./routes/tasklist');
 
 	//Definiendo rutas para "tasklist"
 
     server.post(
-        '/tasklist', 
-            require('./routes/tasklist/new'));
+        '/tasklist',    tasklist.create);
 
     server.get(
-        '/tasklist/:id',
-            require('./routes/tasklist/id'));    
+        '/tasklist/:id',tasklist.read);    
 
     server.put(
-        '/tasklist/:id',
-            require('./routes/tasklist/update'));
+        '/tasklist/:id',tasklist.update);
     	
     server.del(
-    	'/tasklist/:id', 
-    		require('./routes/tasklist/delete'));
+    	'/tasklist/:id',tasklist.delete);
 
 
 
     server.get(
-        '/tasklist', 
-            require('./routes/tasklist/list')); 
+        '/tasklist',    tasklist.list); 
 
 
 
     
 
     server.post(
-    	'/task', 
-    		require('./routes/task/new'));
+        '/task',        task.create);
 
     server.get(
-        '/task/:id',
-            require('./routes/task/id'));
+        '/task/:id',    task.read);
 
     server.put(
-        '/task/:id',
-            require('./routes/task/update'));
+        '/task/:id',    task.update);
 
     server.del(
-    	'/task/:id',
-    		require('./routes/task/delete'));
+    	'/task/:id',    task.delete);
 
 
     server.get(
-        '/task/tasklist/:id',
-            require('./routes/task/tasklist'));
+        '/task/tasklist/:id',       task.by_tasklist);
 
     server.get(
-        '/task/:id/count/:priority', 
-            require('./routes/task/count_priority')); 
+        '/task/:id/count/:priority',task.count_priority); 
 
     server.get(
-        '/task/:id/count', 
-            require('./routes/task/count_priority_all')); 
-
-
-
+        '/task/count_priority/:id', task.count_priority_all); 
 
     server.get(
-        '/tag/:name',
-            require('./routes/tag/list'));
+        '/task/tag/:name',          task.by_tag);
 
 
-    	
-    /*server.get(
-    	'/tasklist/:id', tasklist.find);
 
-	server.post(		
-		'/tasklist', tasklist.save);
-	*/
-	// Otros
 
-	//test upload
+	//test upload #test
 	server.put('/upload', respond);
 	server.post('/upload', respond);
 

@@ -36,15 +36,17 @@ define([
 
 	               var taskCollection = new TaskCollection();             
 
-	               for (var i = 0; i < 4; i++) {
 
-	                     taskCollection.get_count_priority(id_tasklist,i,function(data){
+	                taskCollection.get_count_priority(id_tasklist,function(data){
+	
+		               	for (var i = 0; i < 4; i++) {
 
-	                        $('.count_priority_' + id_tasklist + ' .count_'+ data.name ).html(data.count);
-	                    
-	                     });
+	                        $('.count_priority_' + id_tasklist + ' .count_'+ i ).html(data.count[i]);
 
-	                };
+	                	};	
+
+	                });
+
 	            },
 
 	            create: function(e){
