@@ -103,7 +103,7 @@ define([
 
 								modal_form.id_form.val(task.toJSON()._id);
 								   
-								$('#accordion_' + data.tasklist + '_' + task.toJSON().priority).prepend(_.template(taskTemplate, {task: task.toJSON(), _:_}));
+								$('#accordion_' + data.tasklist + '_' + task.toJSON().priority + ' input').after(_.template(taskTemplate, {task: task.toJSON(), _:_}));
 							
 							}else{
 
@@ -117,7 +117,7 @@ define([
 
 									$('#item-task-' + task.toJSON()._id).remove();
 
-									$('#accordion_' + data.tasklist + '_' + task.toJSON().priority).prepend(_.template(taskTemplate, {task: task.toJSON(), _:_}));
+									$('#accordion_' + data.tasklist + '_' + task.toJSON().priority+ ' input').after(_.template(taskTemplate, {task: task.toJSON(), _:_}));
 
 
 								}								
