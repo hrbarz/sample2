@@ -1,4 +1,6 @@
 var Tasklist 	= require( '../models/tasklist' )(db);
+var Task  		= require( '../models/task')(db);
+
 
 exports.create = function(req,res){
 

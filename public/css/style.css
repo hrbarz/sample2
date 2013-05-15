@@ -62,7 +62,7 @@ section {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-
+  background-color:#FAEEED;
 }
 
 .block_priority_2{
@@ -70,6 +70,7 @@ section {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
+  background-color: #FEF2E2;
 }
 
 .block_priority_1{
@@ -77,6 +78,7 @@ section {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
+  background-color: #EEF7F9;
 }
 
 .block_priority_0{
@@ -84,7 +86,13 @@ section {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
+  background-color: #F0F7F0;
 }
+.gbwhite{
+  background-color: white;
+
+}
+
 /*
 .label {
 

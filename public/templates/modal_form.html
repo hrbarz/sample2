@@ -16,22 +16,25 @@
 
                             <form id="form_modal">
 
-                                <div class="only_task hide">
-                                <label>Priority</label>
+                               
+                               
+                                <input type="hidden" id="modal_priority" value="0">
+
+                          
+                              
+                                  <label>Name</label>
                                 <div class="btn-toolbar">
-                                  <div class="btn-group mondal-list-priority" data-toggle="buttons-radio">
+                                  <div class="btn-group" style="padding-top:10px;">
+                                    <input type="text" id="modal_name" class="span3" >
+                                  </div>
+
+                                  <div class="btn-group mondal-list-priority only_task hide" data-toggle="buttons-radio">
                                     <button value="3" class="btn btn-danger ">!!</button>
                                     <button value="2" class="btn btn-warning ">!</button>
                                     <button value="1" class="btn btn-info ">&amp;</button>
                                     <button value="0" class="btn btn-success active">?</button>
                                   </div>                                  
                                 </div>
-                                </div>
-                                <input type="hidden" id="modal_priority" value="0">
-
-                          
-                                <label>Name</label>
-                                <input type="text" id="modal_name" class="span5" >
 
                                 <label>Description</label>
                                 <textarea rows="3" id="modal_description" class="span5"></textarea>

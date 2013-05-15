@@ -28,14 +28,16 @@
 
                     </div>
                     
-                    <div id="collapse<%- task._id %>" class="accordion-body collapse">
+                    <div id="collapse<%- task._id %>" class="accordion-body collapse gbwhite">
                       <div class="accordion-inner">
                         
                         <p id="description-task-<%- task._id %>" ><%- task.description %></p>
                         
                        <div class="buttons-action-task text-right">
-                          <button type="button" data-value="<%- task._id %>" class="btn-delete-task btn btn-danger btn-mini">Delete</button>
+                          
                           <button type="button" class="btn btn-mini btn-edit-task" data-value="<%- task._id %>">Edit</button>
+                          <button type="button" data-value="<%- task._id %>" class="btn-delete-task btn btn-danger btn-mini">×</button>
+                          
                         </div>
 
                         <hr>
