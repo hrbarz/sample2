@@ -1,5 +1,5 @@
 
-            <li class="span12 well" id="item-tasklist-<%- tasklist._id %>" style="padding: 8px">
+            <li class="span12" id="item-tasklist-<%- tasklist._id %>" style="padding: 8px">
               
               <div style="padding:0 0 5px 0;">
                 
@@ -10,6 +10,7 @@
                     <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu">
+                    <li><a href="#" class="btn-new-task" data-value="<%- tasklist._id %>">New</a></li>
                     <li><a href="#" class="btn-edit-tasklist" data-value="<%- tasklist._id %>">Edit</a></li>
                     <li><a href="#" class="btn-delete-tasklist" data-value="<%- tasklist._id %>">Delete</a></li>
                   </ul>

@@ -51,6 +51,8 @@ define([
 
 	            create: function(e){
 
+	            	e.preventDefault();
+
 					var idparent = this.get_id(e);					
 
                 	modal_form.show({self:this,task:true});
@@ -193,11 +195,9 @@ define([
 	                        	
 	                        	title_task.addClass('cross-out');
 	                        	
-	                        	btn_check.removeClass('btn-danger');
-	                        	btn_check.addClass('btn-success');
 
-	                        	btn_check.find('i').removeClass('icon-thumbs-down');
-	                        	btn_check.find('i').addClass('icon-thumbs-up');
+	                        	btn_check.find('i').removeClass('icon-minus');
+	                        	btn_check.find('i').addClass('icon-ok');
 
 	                        	btn_check.attr('value','pending');
 
@@ -211,11 +211,9 @@ define([
 
 	                        	title_task.removeClass('cross-out');
 
-	                        	btn_check.addClass('btn-danger');
-	                        	btn_check.removeClass('btn-success');
-
-	                        	btn_check.find('i').addClass('icon-thumbs-down');
-	                        	btn_check.find('i').removeClass('icon-thumbs-up');
+	                        	
+	                        	btn_check.find('i').addClass('icon-minus');
+	                        	btn_check.find('i').removeClass('icon-ok');
 
 	                        	btn_check.attr('value','finish');	                        	
 

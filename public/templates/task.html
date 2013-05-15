@@ -5,10 +5,14 @@
                         
                         <table><tr>
                           <td width="3%">
+
                              <% if(task.status == 'finish'){ %>
-                             <button type="button" value="peding" class="check-task btn btn-success btn-mini" data-value="<%- task._id %>"><i class="icon-thumbs-up icon-white"></i></button>
+
+                             <button type="button" value="peding" class="check-task btn btn-link btn-mini" data-value="<%- task._id %>"><i class="icon-ok"></i></button>
+                             
                              <% }else{ %>
-                             <button type="button" value="finish" class="check-task btn btn-danger btn-mini" data-value="<%- task._id %>"><i class="icon-thumbs-down icon-white"></i></button>
+                            
+                             <button type="button" value="finish" class="check-task btn btn-link btn-mini" data-value="<%- task._id %>"><i class="icon-minus"></i></button>
                               <% }%>
                         
                           </td>
