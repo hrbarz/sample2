@@ -93,6 +93,9 @@ section {
 
 }
 
+.navbar-inverse .navbar-inner {
+  background: none; 
+}
 /*
 .label {
 

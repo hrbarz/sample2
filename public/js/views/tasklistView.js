@@ -21,10 +21,12 @@ define([
                 "click .btn-edit-tasklist"      : "edit",
                 "click .btn-delete-tasklist"    : "deletes",
 
-                "click .check-task"            : "check_task",
+                "click .check-task"             : "check_task",
                 "click .btn-new-task"           : "create_task",
                 "click .btn-delete-task"        : "delete_task",
-                "click .btn-edit-task"          : "edit_task"
+                "click .btn-edit-task"          : "edit_task",
+                "keypress .insert-new-task"     : "insert_task"
+
 
             },
 
@@ -223,10 +225,11 @@ define([
                return false;
             },            
 
-            check_task: function(e){ taskView.check(e) },
-            delete_task: function(e){ taskView.deletes(e) },
-            create_task: function(e){ taskView.create(e)},
-            edit_task: function(e){ taskView.edit(e)}
+            check_task  :  function(e){ taskView.check(e) },
+            delete_task :  function(e){ taskView.deletes(e) },
+            create_task :  function(e){ taskView.create(e)},
+            edit_task   :  function(e){ taskView.edit(e)},
+            insert_task :  function(e){ if (e.keyCode != 13) return; taskView.insert_new(e)}
             
 
        });

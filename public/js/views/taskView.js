@@ -68,6 +68,52 @@ define([
 					modal_form.realy();
 				},
 
+				insert_new: function(e){
+
+					that = this;
+
+
+					var idparent = this.get_id(e);
+					
+					var text = $(e.target).val();
+
+
+					if(text != ''){
+
+						data = {};
+
+						var task = new TaskModel();
+
+						data.tasklist = idparent;
+
+						data.priority = $(e.target).attr('data-priority');
+
+						data.name = text;
+
+						data.description = '';
+
+						data.tags = get_hash_tags_text(data.name);
+
+						task.save(data, {
+					       
+				        	success: function (task) {
+
+				        		$(e.target).val('');
+
+				        		that.reload_count_priority(task.toJSON().tasklist);
+
+								$('#accordion_' + data.tasklist + '_' + task.toJSON().priority + ' input')
+									.after(_.template(taskTemplate, {task: task.toJSON(), _:_}));
+
+								$("abbr.timeago").timeago();
+	                            $(".accordion-inner p").url2Link(); 
+				        	}
+
+				        });
+
+					}
+				},
+
 				save_data: function(){
 
 					that = this;
@@ -103,7 +149,8 @@ define([
 
 								modal_form.id_form.val(task.toJSON()._id);
 								   
-								$('#accordion_' + data.tasklist + '_' + task.toJSON().priority + ' input').after(_.template(taskTemplate, {task: task.toJSON(), _:_}));
+								$('#accordion_' + data.tasklist + '_' + task.toJSON().priority + ' input')
+									.after(_.template(taskTemplate, {task: task.toJSON(), _:_}));
 							
 							}else{
 
@@ -111,13 +158,15 @@ define([
 
 								if(blockpriority.html() !== undefined){
 
-									$('#item-task-' + task.toJSON()._id ).replaceWith(_.template(taskTemplate, {task: task.toJSON(), _:_}));
+									$('#item-task-' + task.toJSON()._id )
+										.replaceWith(_.template(taskTemplate, {task: task.toJSON(), _:_}));
 
 								}else{
 
 									$('#item-task-' + task.toJSON()._id).remove();
 
-									$('#accordion_' + data.tasklist + '_' + task.toJSON().priority+ ' input').after(_.template(taskTemplate, {task: task.toJSON(), _:_}));
+									$('#accordion_' + data.tasklist + '_' + task.toJSON().priority+ ' input')
+										.after(_.template(taskTemplate, {task: task.toJSON(), _:_}));
 
 
 								}								

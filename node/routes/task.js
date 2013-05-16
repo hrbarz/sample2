@@ -62,6 +62,9 @@ exports.create = function(req,res){
 
 			});
 		});
+	
+	}else{
+		res.send(500, 'Parametros incompletos');
 	}	
 
 }
