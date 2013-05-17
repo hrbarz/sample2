@@ -99,11 +99,9 @@ define([
 
                 taskView.reload_count_priority(data._id);
 
-                taskView.set_data_list_task(data.tasks);                
+                taskView.set_data_list_task(data.tasks, data._id);                
                 
             },
-
-
 
             get_id: function(e){
                  return  $(e.target).attr('data-value');

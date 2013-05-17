@@ -116,7 +116,8 @@ exports.list = function(req,res){
         .populate({
             path    : 'tasks',
             select  : '_id tasklist name description status priority created_at updated_at',
-            options : { sort: [['status',-1],['created_at', -1 ]] }
+            match	: { status: 'pending'},
+            options : { sort: [['created_at', -1 ]] }
           })
         .exec(function (err, result) {
             

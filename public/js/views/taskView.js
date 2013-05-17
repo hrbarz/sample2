@@ -8,6 +8,8 @@ define([
     'text!templates/task.html'
     ], function($,_,Backbone,TaskCollection,TaskModel,modal_form,taskTemplate) {
 
+    		var taskCollection = new TaskCollection();  
+
         	var Task = Backbone.View.extend({
 
         		get_id		: function(e){
@@ -22,20 +24,43 @@ define([
 	            	return '#item-task-' + id;
 	            },
 
-	            set_data_list_task: function(data){
+	            set_data_list_task: function(data, idtasklist){
 
 	                _.each(data,function(task){
 
-	                    $('#accordion_'+ task.tasklist + '_' + task.priority).append( _.template(taskTemplate,{task: task, _:_}) );
+	                    $('#accordion_'+ task.tasklist + '_' + task.priority + ' .unchecked')
+	                    .append( _.template(taskTemplate,{task: task, _:_}) );	                    
 
 	                });
+
+	                taskCollection.get_tasks_finished(idtasklist,function(data){
+
+	                	
+	                	_.map([0, 1, 2, 3], function(n){ 
+	                	
+	                		var val = _.where(data,{priority:n}).length;
+
+	                		if(val > 0){
+
+					        	$('#accordion_'+ idtasklist + '_' + n + ' .n-items')
+					        	.html(val + ( val==1?' item ':' items') + ' completed');
+
+					    	}
+	                	
+	                	});              	
+
+	                	_.each(data,function(task){
+
+	                    	$('#accordion_'+ task.tasklist + '_' + task.priority + ' .checked')
+	                   		.append( _.template(taskTemplate,{task: task, _:_}) );
+
+                   		});
+                    
+                    });
 	                
 	            },
 
 	            reload_count_priority: function(id_tasklist){
-
-	               var taskCollection = new TaskCollection();             
-
 
 	                taskCollection.get_count_priority(id_tasklist,function(data){
 	
@@ -77,6 +102,7 @@ define([
 					
 					var text = $(e.target).val();
 
+					$(e.target).val('');
 
 					if(text != ''){
 
@@ -98,12 +124,10 @@ define([
 					       
 				        	success: function (task) {
 
-				        		$(e.target).val('');
-
 				        		that.reload_count_priority(task.toJSON().tasklist);
 
-								$('#accordion_' + data.tasklist + '_' + task.toJSON().priority + ' input')
-									.after(_.template(taskTemplate, {task: task.toJSON(), _:_}));
+								$('#accordion_' + data.tasklist + '_' + task.toJSON().priority + ' .unchecked')
+									.prepend(_.template(taskTemplate, {task: task.toJSON(), _:_}));
 
 								$("abbr.timeago").timeago();
 	                            $(".accordion-inner p").url2Link(); 
@@ -149,8 +173,8 @@ define([
 
 								modal_form.id_form.val(task.toJSON()._id);
 								   
-								$('#accordion_' + data.tasklist + '_' + task.toJSON().priority + ' input')
-									.after(_.template(taskTemplate, {task: task.toJSON(), _:_}));
+								$('#accordion_' + data.tasklist + '_' + task.toJSON().priority + ' .unchecked')
+									.prepend(_.template(taskTemplate, {task: task.toJSON(), _:_}));
 							
 							}else{
 
@@ -165,8 +189,8 @@ define([
 
 									$('#item-task-' + task.toJSON()._id).remove();
 
-									$('#accordion_' + data.tasklist + '_' + task.toJSON().priority+ ' input')
-										.after(_.template(taskTemplate, {task: task.toJSON(), _:_}));
+									$('#accordion_' + data.tasklist + '_' + task.toJSON().priority+ ' .unchecked')
+										.prepend(_.template(taskTemplate, {task: task.toJSON(), _:_}));
 
 
 								}								

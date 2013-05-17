@@ -239,9 +239,29 @@ exports.by_tasklist = function(req,res){
 	//res.header("Access-Control-Allow-Origin", config.AccessControlAllowOrigin); 
 	//res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
+	var match = {};
+		match.tasklist = req.params.id;
+
+	if(req.query["status"] !== undefined){
+
+		var status = req.query["status"];
+
+		if(status == 'pending'){
+			
+			match.status = 'pending';
+
+		}else if(status == 'finish'){
+			
+			match.status = 'finish';
+		
+		}
+
+	}
+
+
     if(req.params.id !== undefined ){
 
-        Task.find({tasklist:req.params.id}, function (err, task) {
+        Task.find(match, function (err, task) {
             //if (err) return next(err);
             res.send(task);
 

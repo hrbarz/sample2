@@ -11,13 +11,13 @@ define([
         
             url: '/task',
 
-            get_count_priority: function(id,callback){
+            get_count_priority: function(idtasklist,callback){
 
             	that = this;
 
 	            $.ajax({
 
-	                url: that.url + '/count_priority/'+ id ,
+	                url: that.url + '/count_priority/'+ idtasklist ,
 	                
                   success: function(data){
 
@@ -26,7 +26,24 @@ define([
 	                }
 
 	            });
-	          }
+	          },
+
+            get_tasks_finished: function(idtasklist,callback){
+
+               $.ajax({
+                  url: that.url + '/tasklist/'+ idtasklist ,
+
+                  data: {status:'finish'},
+                  
+                  success: function(data){
+
+                      callback(data);
+
+                  }
+
+              });
+
+            }
         });
 
     return Task;
